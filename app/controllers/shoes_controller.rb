@@ -15,6 +15,7 @@ class ShoesController < ApplicationController
   end
 
   def index
+    @shoes = current_user.shoes.current
   end
 
   def show

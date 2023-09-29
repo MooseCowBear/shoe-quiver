@@ -1,4 +1,6 @@
 class Shoe < ApplicationRecord
+  belongs_to :user 
+  
   enum :category, [:daily_trainer, :speed, :race]
 
   validates_presence_of :brand, :model
