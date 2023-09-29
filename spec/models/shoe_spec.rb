@@ -101,7 +101,7 @@ RSpec.describe Shoe, type: :model do
       expect(Shoe.race).not_to include(@trainer)
     end
 
-    it "does not returbn shoes with category of speed" do 
+    it "does not return shoes with category of speed" do 
       expect(Shoe.race).not_to include(@speed)
     end
   end
