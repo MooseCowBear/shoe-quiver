@@ -45,4 +45,64 @@ RSpec.describe Shoe, type: :model do
       expect(Shoe.archived).not_to include(@not_retired_shoe)
     end
   end
+
+  describe ".daily_trainers" do
+    before(:each) do
+      @trainer = create(:shoe)
+      @speed = create(:shoe, :speed_shoe)
+      @race = create(:shoe, :race_shoe)
+    end
+
+    it "returns shoes with category of daily trainer" do
+      expect(Shoe.daily_trainers).to include(@trainer)
+    end
+
+    it "does not return shoes with category speed" do
+      expect(Shoe.daily_trainers).not_to include(@speed)
+    end
+
+    it "does not return shoes with category race" do
+      expect(Shoe.daily_trainers).not_to include(@race)
+    end
+  end
+
+  describe ".speed" do
+    before(:each) do
+      @trainer = create(:shoe)
+      @speed = create(:shoe, :speed_shoe)
+      @race = create(:shoe, :race_shoe)
+    end
+
+    it "returns shoes with category of speed" do
+      expect(Shoe.speed).to include(@speed)
+    end
+
+    it "does not return shoes with category of daily trainer" do
+      expect(Shoe.speed).not_to include(@trainer)
+    end
+
+    it "does not return shoes with category of race" do
+      expect(Shoe.speed).not_to include(@race)
+    end
+  end
+
+  describe ".race" do
+    before(:each) do
+      @trainer = create(:shoe)
+      @speed = create(:shoe, :speed_shoe)
+      @race = create(:shoe, :race_shoe)
+    end
+
+    it "returns shoes with category of race" do
+      expect(Shoe.race).to include(@race)
+    end
+
+    it "does not return shoes with category of daily trainer" do
+      expect(Shoe.race).not_to include(@trainer)
+    end
+
+    it "does not returbn shoes with category of speed" do 
+      expect(Shoe.race).not_to include(@speed)
+    end
+  end
 end

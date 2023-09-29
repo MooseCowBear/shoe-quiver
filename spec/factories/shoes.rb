@@ -11,5 +11,13 @@ FactoryBot.define do
     trait :retired do
       retired_on { 1.week.ago }
     end
+
+    trait :speed_shoe do
+      category { 1 }
+    end
+
+    trait :race_shoe do
+      category { 2 }
+    end
   end
 end
