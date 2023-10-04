@@ -2,7 +2,6 @@
   <h1 class="">New Shoe</h1>
 
   <%= turbo_frame_tag @shoe do %>
-    <%= render "form", shoe: @shoe %>
+    <%= render "form", shoe: @shoe, new: true %>
   <% end %>
-  <%#= render "form", shoe: @shoe %>
 </div>
