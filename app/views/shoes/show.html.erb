@@ -1,2 +1,6 @@
-<h1>Shoes#show</h1>
-<p>Find me in app/views/shoes/show.html.erb</p>
+<div class="w-[clamp(300px,_80vw,_1000px)] flex flex-col gap-2 border">
+  <h1 class="text-3xl font-semibold uppercase tracking-wider">Shoe Details</h1>
+  <ul class="flex flex-col gap-3">
+    <%= render @shoe, show: true %>
+  </ul>
+</div>
