@@ -1,6 +1,14 @@
 <li id='<%="#{dom_id(shoe)}_container"%>' class="<%= shoe_wear_category(shoe) == "mustard" ? "text-eggplant" : "text-neutral-50" %> p-2 rounded-md <%= "bg-#{shoe_wear_category(shoe)}" %>">
   <%= turbo_frame_tag dom_id(shoe), class: "grid grid-cols-[1fr_auto_auto] items-center gap-x-2" do %>
-    <h3 class="flex gap-2 uppercase"><%= shoe.brand %><span class="lowercase"><%= shoe.model %></span></h3>
+    <h3 class="flex items-center gap-2 uppercase">
+      <%= shoe.brand %>
+      <span class="lowercase">
+        <%= shoe.model %>
+      </span>
+      <span class="text-sm rounded-xl px-2 border-2 <%= shoe_wear_category(shoe) == "mustard" ? "border-eggplant" : "border-neutral-50" %>">
+        <%= category_identifier(shoe) %>
+      </span>
+    </h3>
     <p><%= shoe.mileage.to_f %></p>
     <button class="h-7 w-7">
       <svg class="<%= shoe_wear_category(shoe) == "mustard" ? "fill-eggplant" : "fill-neutral-50" %>" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

@@ -2,11 +2,11 @@ module ShoesHelper
   def category_identifier(shoe)
     # for making little css visuals for shoe type
     case shoe.category
-    when :daily_trainer
+    when "daily_trainer"
       "dt"
-    when :speed
+    when "speed"
       "s"
-    when :race
+    when "race"
       "r"
     end
   end
