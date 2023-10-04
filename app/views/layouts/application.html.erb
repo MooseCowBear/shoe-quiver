@@ -11,11 +11,34 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="flex flex-col items-stretch gap-3 max-w-[1400px] min-w-[320px] mx-auto py-5 px-[clamp(1rem,_5vw,_3rem)] bg-neutral-50 text-eggplant">
-    <header class="flex justify-between items-center flex-wrap">
-      <p>menu</p>
+  <body class="flex flex-col items-stretch gap-3 max-w-[1400px] min-w-[320px] mx-auto py-5 px-[clamp(1rem,_5vw,_3rem)] bg-neutral-50 text-eggplant relative">
+    <header class="flex <%= user_signed_in? ? 'justify-between' : 'justify-center' %> items-center flex-wrap">
+
+      <% if user_signed_in? %>
+        <div data-controller="toggle" data-toggle-change-class="hidden">
+          <button data-action="click->toggle#remove" class="clickable">
+            <svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path fill="" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+            </svg>
+          </button>
+          <div data-toggle-target="content" 
+            class="hidden w-[clamp(280px,_60vw,_600px)] p-5 bg-neutral-50 rounded border-2 flex flex-col items-center justify-center absolute top-[4rem] left-[50%] translate-x-[-50%] shadow-md" 
+            id="menu">
+            <button data-action="click->toggle#add" class="self-end">
+              <svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path fill="" d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
+              </svg>
+            </button>
+            <%= render partial: "layouts/menu" %>
+          </div>
+        </div>
+      <% end %>
+
       <h2 class="text-lg font-bold">Shoe Quiver</h2>
-      <p>Add a run</p>
+
+      <% if user_signed_in? %>
+        <p>Add a run</p>
+      <% end %>
     </header>
     <main class="flex flex-col gap-3 items-center border">
       <div>
@@ -24,5 +47,12 @@
       </div>
       <%= yield %>
     </main>
+
+    <%# TEMP %>
+    <footer>
+      <%= button_to "Logout", 
+        destroy_user_session_path, 
+        data: {turbo: "false"}, class: "button", method: :delete %>
+    </footer>
   </body>
 </html>
