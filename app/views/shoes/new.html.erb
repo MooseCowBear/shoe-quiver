@@ -1,7 +1,8 @@
 <div class="shoe wrapper">
   <h1 class="">New Shoe</h1>
 
-  <%= render "form", shoe: @shoe %>
-
-  <%= link_to 'Back', shoes_path, class: "" %>
+  <%= turbo_frame_tag @shoe do %>
+    <%= render "form", shoe: @shoe %>
+  <% end %>
+  <%#= render "form", shoe: @shoe %>
 </div>

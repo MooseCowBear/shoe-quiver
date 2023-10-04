@@ -41,7 +41,11 @@ class ShoesController < ApplicationController
   end
 
   def index
-    @shoes = current_user.shoes.current
+    if params[:category]
+      @shoes = current_user.shoes.current.where(category: params[:category].to_i)
+    else
+      @shoes = current_user.shoes.current
+    end
   end
 
   def show

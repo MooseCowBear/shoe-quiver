@@ -1,12 +1,12 @@
-<li id="<%="#{dom_id(shoe)}_container"%>" class="shoe card">
-  <%= turbo_frame_tag dom_id(shoe) do %>
-    <h3><%= shoe.brand %><span><%= shoe.model %></span></h3>
-      <p><%= shoe.mileage.to_f %></p>
-      <button class="button__transparent">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <path fill="black" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
-        </svg>
-      </button>
-      <p><%= shoe.color %></p>
+<li id='<%="#{dom_id(shoe)}_container"%>' class="<%= shoe_wear_category(shoe) == "mustard" ? "text-eggplant" : "text-neutral-50" %> p-2 rounded-md <%= "bg-#{shoe_wear_category(shoe)}" %>">
+  <%= turbo_frame_tag dom_id(shoe), class: "grid grid-cols-[1fr_auto_auto] items-center gap-x-2" do %>
+    <h3 class="flex gap-2 uppercase"><%= shoe.brand %><span class="lowercase"><%= shoe.model %></span></h3>
+    <p><%= shoe.mileage.to_f %></p>
+    <button class="h-7 w-7">
+      <svg class="<%= shoe_wear_category(shoe) == "mustard" ? "fill-eggplant" : "fill-neutral-50" %>" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path  fill="" d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z" />
+      </svg>
+    </button>
+    <p class="leading-none"><%= shoe.color %></p>
   <% end %>
 </li>

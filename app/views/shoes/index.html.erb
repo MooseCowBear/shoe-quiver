@@ -1,16 +1,41 @@
-<div class="shoe wrapper">
-  <ul class="tabs">
-    <li>All</li>
-    <li>Daily Trainers</li>
-    <li>Speed</li>
-    <li>Race</li>
-  </ul>
+<div class="w-[clamp(300px,_80vw,_1000px)] flex flex-col gap-2 border">
   
-  <h1>Current Rotation</h1>
+  <div class="flex justify-center items-baseline gap-3">
+    <h1 class="text-3xl font-semibold uppercase tracking-wider">Current Rotation</h1>
+    <%= link_to "Add a shoe", new_shoe_path, 
+          data: { turbo_frame: dom_id(Shoe.new) } %>
+  </div>
 
-  <div>NEW SHOE FORM PLACEHOLDER</div>
+  <%= turbo_frame_tag Shoe.new %>
 
-  <ul id="shoes">
+  <ul class="grid grid-cols-4 justify-items-center items-center">
+    <li>
+      <%= link_to "All",
+        shoes_path,
+        class: "inline-block py-2 px-4 text-sm font-medium text-center text-gray-500 border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300" 
+      %>
+    </li>
+    <li>
+      <%= link_to "Daily Trainers",
+        shoes_path(category: 0),
+        class: "inline-block py-2 px-4 text-sm font-medium text-center text-gray-500 border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300" 
+      %>
+    </li>
+    <li>
+      <%= link_to "Speed",
+        shoes_path(category: 1),
+        class: "inline-block py-2 px-4 text-sm font-medium text-center text-gray-500 border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300" 
+      %>
+    </li>
+    <li>
+      <%= link_to "Race",
+        shoes_path(category: 2),
+        class: "inline-block py-2 px-4 text-sm font-medium text-center text-gray-500 border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300" 
+      %>
+    </li>
+  </ul>
+
+  <ul id="shoes" class="flex flex-col gap-3" >
     <%= render @shoes %>
   </ul>
 </div>

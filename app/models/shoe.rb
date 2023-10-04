@@ -11,4 +11,8 @@ class Shoe < ApplicationRecord
   scope :daily_trainers, -> { where(category: :daily_trainer) }
   scope :speed, -> { where(category: :speed) }
   scope :race, -> { where(category: :race) }
+
+  def percent_retire_mileage
+    (mileage / retire_at) * 100
+  end
 end

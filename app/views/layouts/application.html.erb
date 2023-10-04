@@ -5,14 +5,24 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+  <body class="flex flex-col items-stretch gap-3 max-w-[1400px] min-w-[320px] mx-auto py-5 px-[clamp(1rem,_5vw,_3rem)] bg-neutral-50 text-eggplant">
+    <header class="flex justify-between items-center flex-wrap">
+      <p>menu</p>
+      <h2 class="text-lg font-bold">Shoe Quiver</h2>
+      <p>Add a run</p>
+    </header>
+    <main class="flex flex-col gap-3 items-center border">
+      <div>
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+      </div>
+      <%= yield %>
+    </main>
   </body>
 </html>

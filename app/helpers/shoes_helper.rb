@@ -10,4 +10,20 @@ module ShoesHelper
       "r"
     end
   end
+
+
+
+  def shoe_wear_category(shoe)
+    # for getting the right color for shoe card
+    mileage_used = shoe.percent_retire_mileage
+    if mileage_used < 1
+      "eggplant"
+    elsif mileage_used < 50
+      "mint"
+    elsif mileage_used < 90
+      "mustard"
+    else
+      "poppy"
+    end
+  end
 end
