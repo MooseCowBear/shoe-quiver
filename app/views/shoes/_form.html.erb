@@ -1,0 +1,37 @@
+<%= form_with(model: shoe, id: "#{dom_id(shoe)}_form") do |form| %>
+  <% if shoe.errors.any? %>
+    <div id="error_explanation" class="">
+      <h2><%= pluralize(shoe.errors.count, "error") %> prohibited this shoe from being saved:</h2>
+
+      <ul>
+        <% shoe.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="">
+    <%= form.label :brand, "Brand:" %>
+    <%= form.text_field :brand, class: "" %>
+  </div>
+  <div class="">
+    <%= form.label :model, "Model:" %>
+    <%= form.text_field :model, class: "" %>
+  </div>
+  <div class="">
+    <%= form.label :color, "Color:" %>
+    <%= form.text_field :color, class: "" %>
+  </div>
+  <div class="">
+    <%= form.label :category, "Category:" %>
+    <%= form.select :category, options_for_select(Shoe.categories.map {|k, v| [k.humanize.capitalize, v]}) %>
+  </div>
+  <div class="">
+    <%= form.label :retire_at, "Retire at:" %>
+    <%= form.number_field :retire_at, value: 500, min: 100, max: 600, step: 50, class: "" %>
+    <%= form.label :retire_at_units, "Units:" %>
+    <%= form.select :retire_at_units, ['mi', 'km'] %>
+  </div>
+  <%= form.submit class: "" %>
+  <%= link_to "cancel", :back %>
+<% end %>

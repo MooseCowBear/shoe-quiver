@@ -64,3 +64,59 @@ a:not([class]) {
   --yellow: rgb(235, 163, 94);
   --red: rgb(238, 122, 118);
 }
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem 5vw;
+}
+
+button {
+  cursor: pointer;
+}
+
+.button__transparent {
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+.button__transparent svg {
+  height: 20px;
+  width: 20px;
+}
+
+.shoe.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: clamp(310px, 80vw, 800px);
+}
+
+.card {
+  padding: 1rem;
+  border-radius: 5px;
+
+  border: 1px solid black;
+}
+
+.shoe.card {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  column-gap: 1rem;
+}
+
+.shoe.card h3 {
+  display: flex;
+  gap: 0.5rem;
+
+  text-transform: capitalize;
+}
+
+.shoe.card h3 span {
+  font-weight: normal;
+  text-transform: uppercase;
+}

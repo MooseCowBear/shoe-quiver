@@ -1,2 +1,7 @@
-<h1>Shoes#new</h1>
-<p>Find me in app/views/shoes/new.html.erb</p>
+<div class="shoe wrapper">
+  <h1 class="">New Shoe</h1>
+
+  <%= render "form", shoe: @shoe %>
+
+  <%= link_to 'Back', shoes_path, class: "" %>
+</div>

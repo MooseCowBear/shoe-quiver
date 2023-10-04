@@ -1,0 +1,12 @@
+<li id="<%="#{dom_id(shoe)}_container"%>" class="shoe card">
+  <%= turbo_frame_tag dom_id(shoe) do %>
+    <h3><%= shoe.brand %><span><%= shoe.model %></span></h3>
+      <p><%= shoe.mileage.to_f %></p>
+      <button class="button__transparent">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path fill="black" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
+        </svg>
+      </button>
+      <p><%= shoe.color %></p>
+  <% end %>
+</li>

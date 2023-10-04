@@ -1,2 +1,8 @@
-<h1>Shoes#edit</h1>
-<p>Find me in app/views/shoes/edit.html.erb</p>
+<div class="">
+  <h1 class="">Edit Shoe</h1>
+
+  <%= turbo_frame_tag dom_id(@shoe) do %>
+    <%= render "form", shoe: @shoe %>
+  <% end %>
+
+</div>
