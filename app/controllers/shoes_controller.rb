@@ -10,9 +10,6 @@ class ShoesController < ApplicationController
     @shoe = Shoe.new(processed_shoe_params.except(:retire_at_units))
     @shoe.user = current_user
 
-    puts "the new shoe is:"
-    pp @shoe
-
     if @shoe.save
       redirect_to @shoe #will change
       flash[:notice] = "New shoe successfully added."
@@ -42,9 +39,14 @@ class ShoesController < ApplicationController
 
   def index
     if params[:category]
-      @shoes = current_user.shoes.current.where(category: params[:category].to_i)
+      @shoes = current_user
+        .shoes
+        .current
+        .where(category: params[:category].to_i)
+        .order_by_last_run
+        .order_by_creation
     else
-      @shoes = current_user.shoes.current
+      @shoes = current_user.shoes.current.order_by_last_run.order_by_creation
     end
   end
 
@@ -54,7 +56,8 @@ class ShoesController < ApplicationController
   private
 
   def shoe_params
-    params.require(:shoe).permit(:brand, :model, :color, :category, :retire_at, :retire_at_units)
+    params.require(:shoe)
+      .permit(:brand, :model, :color, :category, :retire_at, :retire_at_units)
   end
 
   def processed_shoe_params
