@@ -1,0 +1,55 @@
+<%= form_with(model: [@shoe, @run], id: "#{dom_id(@run)}_form",  html: { class: "flex flex-col gap-1 items-center py-2 px-5 rounded bg-neutral-100" }) do |form| %>
+
+  <%= form.hidden_field :referrer, value: referrer %>
+  
+  <div class="w-full grid sm:grid-cols-2 md:grid-cols-3 gap-x-2">
+    <div class="flex flex-col">
+      <div class="flex items-baseline gap-1">
+        <%= form.label :date, "Date:", class: "lowercase text-sm" %>
+        <% form.object.errors.full_messages_for(:date).each do |msg| %>
+          <span class="text-sm text-pink-500"><%= msg %></span>
+        <% end %>
+      </div>
+      <%= form.date_field :date, class: "rounded p-1 bg-neutral-50 border-mint w-full text-eggplant" %>
+    </div>
+
+    <div class="flex flex-col">
+      <div class="flex items-baseline gap-1">
+        <%= form.label :distance, "Distance:", class: "lowercase text-sm" %>
+        <% form.object.errors.full_messages_for(:distance).each do |msg| %>
+          <span class="text-sm text-pink-500"><%= msg %></span>
+        <% end %>
+      </div>
+      <%= form.number_field :distance, step: 0.05, min: 0, class: "rounded p-1 bg-neutral-50 border-mint w-full text-eggplant" %>
+    </div>
+
+    <div class="flex flex-col">
+      <%= form.label :distance_units, "Units:", class: "lowercase text-sm" %>
+      <%= form.select :distance_units, ['mi', 'km'], {}, { class: "rounded p-1 bg-neutral-50 border-mint text-eggplant" } %>
+    </div>
+
+    <div class="flex flex-col">
+      <%= form.label :hours, "Hours:", class: "lowercase text-sm" %>
+      <%= form.number_field :hours, value: 0, min: 0, max: 100, class: "rounded p-1 bg-neutral-50 border-mint w-full text-eggplant" %>
+    </div>
+
+    <div class="flex flex-col">
+      <%= form.label :minutes, "Minutes:", class: "lowercase text-sm" %>
+      <%= form.number_field :minutes, value: 0, min: 0, max: 59, class: "rounded p-1 bg-neutral-50 border-mint w-full text-eggplant" %>
+    </div>
+
+    <div class="flex flex-col">
+      <%= form.label :seconds, "Seconds:", class: "lowercase text-sm" %>
+      <%= form.number_field :seconds, value: 0, min: 0, max: 59, class: "rounded p-1 bg-neutral-50 border-mint w-full text-eggplant" %>
+    </div>
+
+    <div class="flex flex-col">
+      <%= form.label :felt, "I felt:", class: "lowercase text-sm" %>
+      <%= form.select :felt, options_for_select([["", 0], ["Good", 1], ["Okay", 2], ["Bad", 3]]), {}, { class: "rounded p-1 bg-neutral-50 border-mint text-eggplant" } %>
+    </div>
+  </div>
+  <div class="w-5/6 md:w-1/2 flex justify-between">
+    <%= form.submit class: "text-sm uppercase tracking-wider cursor-pointer border-b-2 border-transparent hover:border-eggplant" %>
+    <%= link_to "Cancel", :back, class: "text-sm uppercase tracking-wider cursor-pointer py-1 px-3 border-b-2 border-transparent hover:border-eggplant" %>
+  </div>
+<% end %>

@@ -1,4 +1,7 @@
 <div>
-  <h1 class="font-bold text-4xl">Runs#edit</h1>
-  <p>Find me in app/views/runs/edit.html.erb</p>
+  <h1 class="">Edit Run</h1>
+
+  <%= turbo_frame_tag @run do %>
+    <%= render "form", referrer: @referrer %>
+  <% end %>
 </div>

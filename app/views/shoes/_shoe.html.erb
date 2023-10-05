@@ -1,5 +1,6 @@
-<li id='<%="#{dom_id(shoe)}_container"%>' class="<%= shoe_wear_category(shoe) == "mustard" ? "text-eggplant" : "text-neutral-50" %> p-2 rounded-md <%= "bg-#{shoe_wear_category(shoe)}" %>">
-  <%= turbo_frame_tag dom_id(shoe), class: "grid grid-cols-1 md:grid-cols-[1fr_auto] items-center gap-x-2" do %>
+<li id='<%="#{dom_id(shoe)}_container"%>' class="">
+  <%= turbo_frame_tag dom_id(shoe), 
+    class: "p-2 rounded-md grid grid-cols-1 md:grid-cols-[1fr_auto] items-center gap-x-2 bg-#{shoe_wear_category(shoe)} #{shoe_wear_category(shoe) == "mustard" ? "text-eggplant" : "text-neutral-50"}" do %>
     <h3 class="flex items-center gap-2 uppercase row-start-1">
       <%= shoe.brand %>
       <span class="lowercase">
@@ -29,15 +30,23 @@
     </div>
     <p class="leading-none row-start-2"><%= shoe.color %></p>
 
-    <%# PLACEHOLDER -- UPDATE WHEN HAVE RUNS MODEL to be link to new run %>
+    <%= link_to new_shoe_run_path(shoe_id: shoe), { data: { turbo_frame: dom_id(Run.new) }, class: "flex items-center" } do %>
+      <svg class="h-6 w-6 <%= shoe_wear_category(shoe) == "mustard" ? "fill-eggplant" : "fill-neutral-50" %>" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path fill="" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
+      </svg>
+      <p>Add a run</p>
+    <% end %>
+
+    <% if false %>
     <div class="flex items-center">
       <svg class="h-6 w-6 <%= shoe_wear_category(shoe) == "mustard" ? "fill-eggplant" : "fill-neutral-50" %>" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <path fill="" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
       </svg>
       <p>Add a run</p>
     </div>
+    <% end %>
 
   <% end %>
 
-  <%# THINK THIS IS WHERE THE FORM FOR A NEW RUN WILL BE %>
+  <%= turbo_frame_tag Run.new, class: "" %>
 </li>

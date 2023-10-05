@@ -1,0 +1,12 @@
+<% if @destination == "shoe" %>
+  <%= turbo_stream.replace dom_id(@shoe) do %>
+    <%= render partial: "shoes/shoe", locals: { shoe: @shoe, show: true } %>
+    <%= turbo_stream.remove "new_run_form" %>
+
+    <%# WILL NEED TO ADD THE RUN TO THE TOP OF RUNS DISPLAY -- once we get there %>
+  <% end %>
+<% else %>
+  <%= turbo_stream.remove @shoe %>
+  <%= turbo_stream.append "shoes", partial: "shoes/shoe", locals: { shoe: @shoe, show: false } %>
+  <%= turbo_stream.remove "new_run_form" %>
+<% end %>
