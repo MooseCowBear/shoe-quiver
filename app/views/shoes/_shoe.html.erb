@@ -9,7 +9,7 @@
         <%= category_identifier(shoe) %>
       </span>
     </h3>
-    <div class="flex gap-2 items-center row-start-3 md:row-start-1">
+    <div class="flex gap-2 items-center row-start-3 md:row-start-1 md:justify-self-end">
       <p><%= shoe.mileage.to_f %></p>
       <% unless show %>
         <%= link_to shoe_path(shoe), data: {turbo_frame: "_top"}, class: "h-7 w-7" do %> 
@@ -28,5 +28,16 @@
       <% end %>
     </div>
     <p class="leading-none row-start-2"><%= shoe.color %></p>
+
+    <%# PLACEHOLDER -- UPDATE WHEN HAVE RUNS MODEL to be link to new run %>
+    <div class="flex items-center">
+      <svg class="h-6 w-6 <%= shoe_wear_category(shoe) == "mustard" ? "fill-eggplant" : "fill-neutral-50" %>" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path fill="" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
+      </svg>
+      <p>Add a run</p>
+    </div>
+
   <% end %>
+
+  <%# THINK THIS IS WHERE THE FORM FOR A NEW RUN WILL BE %>
 </li>

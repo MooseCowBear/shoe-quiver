@@ -1,5 +1,6 @@
 class Shoe < ApplicationRecord
   belongs_to :user 
+  has_many :runs, dependent: :nullify
   
   enum :category, { daily_trainer: 0, speed: 1, race: 2 }
 
