@@ -1,5 +1,5 @@
 class RunsController < ApplicationController
-  before_action :set_shoe, only: [:new, :create] #only: [:new, :create, :edit, :update]
+  before_action :set_shoe, only: [:new, :create]
   before_action :set_referrer, only: [:new, :edit]
   before_action :set_destination, only: [:create, :update]
   before_action :set_shoes, only: [:create, :update] #this might be only create!
@@ -38,8 +38,12 @@ class RunsController < ApplicationController
 
   def update
     #also will want to redirect based on where you came from (either shoe show or run show)
-
-    
+    if @run.update(processed_run_params.except(:hours, :minutes, :seconds, :distance_units, :referrer))
+      redirect_to @run.shoe #will change
+      flash[:notice] = "Run successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
