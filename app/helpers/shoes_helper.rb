@@ -15,6 +15,7 @@ module ShoesHelper
 
   def shoe_wear_category(shoe)
     # for getting the right color for shoe card
+    return "" if shoe.new_record?
     mileage_used = shoe.percent_retire_mileage
     if mileage_used < 1
       "eggplant"

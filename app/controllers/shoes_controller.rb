@@ -10,6 +10,8 @@ class ShoesController < ApplicationController
     @shoe = Shoe.new(processed_shoe_params.except(:retire_at_units))
     @shoe.user = current_user
 
+    # TODO: add turbostream!!!
+
     if @shoe.save
       redirect_to @shoe #will change
       flash[:notice] = "New shoe successfully added."
