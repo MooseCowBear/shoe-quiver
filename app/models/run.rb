@@ -7,11 +7,9 @@ class Run < ApplicationRecord
   validates_presence_of :distance, :duration, :date
 
   after_create :add_shoe_mileage
-  after_create :update_shoe_last_run
   after_destroy :subtract_shoe_mileage
   before_update :update_shoe_milage
-  after_update :update_shoe_last_run
-  after_destroy :rollback_shoe_last_run
+  after_commit :update_shoe_last_run
 
   scope :order_by_date, -> { order(date: :asc) }
 
@@ -39,12 +37,7 @@ class Run < ApplicationRecord
   end
 
   def update_shoe_last_run
-    shoe.update(last_run_in: self.date)
-  end
-
-  def rollback_shoe_last_run
-    # after destroy need to find out the new last run for the shoe
-    # and update its date to it
+    # after change to shoe runs, need to update date 
     last_run = shoe.runs.order_by_date.last
     prev_date = last_run ? last_run.date : nil
     shoe.update(last_run_in: prev_date)
