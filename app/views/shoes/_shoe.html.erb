@@ -36,16 +36,7 @@
       </svg>
       <p>Add a run</p>
     <% end %>
-
-    <% if false %>
-    <div class="flex items-center">
-      <svg class="h-6 w-6 <%= shoe_wear_category(shoe) == "mustard" ? "fill-eggplant" : "fill-neutral-50" %>" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path fill="" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
-      </svg>
-      <p>Add a run</p>
-    </div>
-    <% end %>
-
+    
   <% end %>
 
   <%= turbo_frame_tag Run.new, class: "" %>

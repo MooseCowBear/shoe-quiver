@@ -3,10 +3,10 @@
     <%= render partial: "shoes/shoe", locals: { shoe: @shoe, show: true } %>
     <%= turbo_stream.remove "new_run_form" %>
 
-    <%# WILL NEED TO ADD THE RUN TO THE TOP OF RUNS DISPLAY -- once we get there %>
+    <%# WILL NEED TO ADD THE RUN TO THE TOP OF RUNS DISPLAY -- once we get to that part %>
   <% end %>
 <% else %>
   <%= turbo_stream.remove @shoe %>
-  <%= turbo_stream.append "shoes", partial: "shoes/shoe", locals: { shoe: @shoe, show: false } %>
+  <%= turbo_stream.update "shoes", partial: "shoes/shoe", collection: @shoes, as: :shoe, locals: { show: false } %>
   <%= turbo_stream.remove "new_run_form" %>
 <% end %>
