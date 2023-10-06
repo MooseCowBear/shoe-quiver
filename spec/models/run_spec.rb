@@ -50,4 +50,14 @@ RSpec.describe Run, type: :model do
       expect(@shoe1.mileage).to eq(10)
     end
   end
+
+  describe(".order_by_date") do
+    it "sorts so most recent run is last" do
+      shoe1 = create(:shoe, user: @user)
+      run1 = create(:run, distance: 10, date: 3.days.ago, user: @user, shoe: shoe1)
+      run2 = create(:run, distance: 5, date: 1.day.ago, user: @user, shoe: shoe1)
+
+      expect(Run.order_by_date.last.distance).to eq(5)
+    end
+  end
 end

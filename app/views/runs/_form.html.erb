@@ -10,7 +10,7 @@
           <span class="text-sm text-pink-500"><%= msg %></span>
         <% end %>
       </div>
-      <%= form.date_field :date, class: "rounded p-1 bg-neutral-50 border-mint w-full text-eggplant" %>
+      <%= form.date_field :date, max: Date.today, class: "rounded p-1 bg-neutral-50 border-mint w-full text-eggplant" %>
     </div>
 
     <div class="flex flex-col">
