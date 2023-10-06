@@ -53,6 +53,7 @@ class ShoesController < ApplicationController
   end
 
   def show
+    @runs = @shoe.runs
   end
 
   private

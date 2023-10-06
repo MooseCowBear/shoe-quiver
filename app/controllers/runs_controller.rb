@@ -1,8 +1,9 @@
 class RunsController < ApplicationController
-  before_action :set_shoe, only: [:new, :create, :edit, :update]
+  before_action :set_shoe, only: [:new, :create] #only: [:new, :create, :edit, :update]
   before_action :set_referrer, only: [:new, :edit]
   before_action :set_destination, only: [:create, :update]
-  before_action :set_shoes, only: [:create, :update]
+  before_action :set_shoes, only: [:create, :update] #this might be only create!
+  before_action :set_run, only: [:edit, :update]
 
   def index
     #this will be for calendar view
@@ -37,6 +38,8 @@ class RunsController < ApplicationController
 
   def update
     #also will want to redirect based on where you came from (either shoe show or run show)
+
+    
   end
 
   def destroy
@@ -45,6 +48,10 @@ class RunsController < ApplicationController
   end
 
   private
+
+  def set_run 
+    @run = Run.find(params[:id])
+  end
 
   def set_shoe 
     @shoe = Shoe.find(params[:shoe_id])

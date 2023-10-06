@@ -1,6 +1,11 @@
 <div class="w-[clamp(300px,_80vw,_1000px)] flex flex-col gap-2 border">
   <h1 class="text-3xl font-semibold uppercase tracking-wider">Shoe Details</h1>
+  
   <ul class="flex flex-col gap-3">
     <%= render @shoe, show: true %>
+  </ul>
+
+  <ul id="runs" class="flex flex-col gap-3" >
+    <%= render @runs %>
   </ul>
 </div>
