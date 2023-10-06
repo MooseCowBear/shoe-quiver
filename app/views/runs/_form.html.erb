@@ -47,6 +47,11 @@
       <%= form.label :felt, "I felt:", class: "lowercase text-sm" %>
       <%= form.select :felt, options_for_select([["", 0], ["Good", 1], ["Okay", 2], ["Bad", 3]]), {}, { class: "rounded p-1 bg-neutral-50 border-mint text-eggplant" } %>
     </div>
+
+    <div class="flex flex-col">
+      <%= form.label :notes, "Notes", class: "lowercase text-sm" %>
+      <%= form.text_area :notes, cols: 20, rows: 2, class: "rounded p-1 bg-neutral-50 border-mint w-full text-eggplant" %>
+    </div>
   </div>
   <div class="w-5/6 md:w-1/2 flex justify-between">
     <%= form.submit class: "text-sm uppercase tracking-wider cursor-pointer border-b-2 border-transparent hover:border-eggplant" %>

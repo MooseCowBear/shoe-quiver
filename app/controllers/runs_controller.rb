@@ -52,7 +52,7 @@ class RunsController < ApplicationController
 
   def run_params
     params.require(:run)
-      .permit(:date, :distance, :distance_units, :hours, :minutes, :seconds, :felt, :referrer)
+      .permit(:date, :distance, :distance_units, :hours, :minutes, :seconds, :felt, :notes, :referrer)
   end
 
   def processed_run_params
@@ -78,7 +78,6 @@ class RunsController < ApplicationController
     @destination = run_params[:referrer]
   end
 
-  # ugh -- will this work?? 
   def set_shoes
     return unless @destination == "root"
     @shoes = current_user.shoes.current.order_by_last_run.order_by_creation
