@@ -2,9 +2,8 @@
   <%= turbo_stream.replace dom_id(@shoe) do %>
     <%= render partial: "shoes/shoe", locals: { shoe: @shoe, show: true } %>
     <%= turbo_stream.remove "new_run_form" %>
-
-    <%# WILL NEED TO ADD THE RUN TO THE TOP OF RUNS DISPLAY -- once we get to that part %>
   <% end %>
+  <%= turbo_stream.prepend "runs", partial: "runs/run", locals: { run: @run } %>
 <% else %>
   <%= turbo_stream.remove @shoe %>
   <%= turbo_stream.update "shoes", partial: "shoes/shoe", collection: @shoes, as: :shoe, locals: { show: false } %>

@@ -1,9 +1,9 @@
 class RunsController < ApplicationController
   before_action :set_shoe, only: [:new, :create]
-  before_action :set_referrer, only: [:new, :edit]
+  before_action :set_run, only: [:edit, :update, :destroy]
+  before_action :set_referrer, only: [:new, :edit, :destroy]
   before_action :set_destination, only: [:create, :update]
   before_action :set_shoes, only: [:create, :update] #this might be only create!
-  before_action :set_run, only: [:edit, :update]
 
   def index
     #this will be for calendar view
@@ -47,8 +47,12 @@ class RunsController < ApplicationController
   end
 
   def destroy
-    #want to redirect to runs index IF came from run show
-    #but want to redirect to shoes index IF came from shoe show
+    # TODO: update for deletion from run#show
+    @run.destroy
+    respond_to do |format|
+      format.html { redirect_to @run.shoe, notice: "Run was successfully deleted." }
+      format.turbo_stream { flash[:now] = "Run was successfully deleted." }
+    end
   end
 
   private
@@ -78,6 +82,11 @@ class RunsController < ApplicationController
   end
 
   def set_referrer
+    # MARK: if end up allowing destroy from run show or run index, then setting of referrer will change
+    # would need if root_url || shoes_url, if runs_url, if run_url(@run), else (shoe#show)
+    puts "REFERRER IS:"
+    pp request.referrer
+
     if request.referrer == root_url || request.referrer == shoes_url
       @referrer = "root"
     else
@@ -90,6 +99,7 @@ class RunsController < ApplicationController
   end
 
   def set_shoes
+    #TODO: get this to incorporate to query params
     return unless @destination == "root"
     @shoes = current_user.shoes.current.order_by_last_run.order_by_creation
   end
