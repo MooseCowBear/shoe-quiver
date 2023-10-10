@@ -10,11 +10,11 @@ class ShoesController < ApplicationController
     @shoe = Shoe.new(processed_shoe_params.except(:retire_at_units))
     @shoe.user = current_user
 
-    # TODO: add turbostream!!! creating a new shoe will always prepend to "shoes"
-
     if @shoe.save
-      redirect_to @shoe #will change
-      flash[:notice] = "New shoe successfully added."
+      respond_to do |format|
+        format.html { redirect_to @shoe, notice: "New shoe successfully added." }
+        format.turbo_stream { flash.now[:notice] = "New shoe successfully added." } 
+      end
     else
       render :new, status: :unprocessable_entity
     end
