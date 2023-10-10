@@ -6,12 +6,13 @@ class Run < ApplicationRecord
 
   validates_presence_of :distance, :duration, :date
 
-  after_create :add_shoe_mileage
-  after_destroy :subtract_shoe_mileage
+  before_create :add_shoe_mileage
+  before_destroy :subtract_shoe_mileage
   before_update :update_shoe_milage
-  after_commit :update_shoe_last_run
+  before_commit :update_shoe_last_run
 
   scope :order_by_date, -> { order(date: :asc) }
+  scope :reverse_order_by_date, -> { order(date: :desc) } #most recent runs first
 
   private 
 

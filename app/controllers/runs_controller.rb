@@ -3,7 +3,6 @@ class RunsController < ApplicationController
   before_action :set_run, only: [:edit, :update, :destroy]
   before_action :set_referrer, only: [:new, :edit, :destroy]
   before_action :set_destination, only: [:create, :update]
-  before_action :set_shoes, only: [:create, :update] #this might be only create!
 
   def index
     #this will be for calendar view
@@ -39,8 +38,10 @@ class RunsController < ApplicationController
   def update
     #also will want to redirect based on where you came from (either shoe show or run show)
     if @run.update(processed_run_params.except(:hours, :minutes, :seconds, :distance_units, :referrer))
-      redirect_to @run.shoe #will change
-      flash[:notice] = "Run successfully updated."
+      respond_to do |format|
+        format.html { redirect_to @run.shoe, notice: "Run successfully updated." }
+        format.turbo_stream { flash[:now] = "Run was successfully updated." }
+      end
     else
       render :edit, status: :unprocessable_entity
     end
@@ -96,11 +97,5 @@ class RunsController < ApplicationController
 
   def set_destination 
     @destination = run_params[:referrer]
-  end
-
-  def set_shoes
-    #TODO: get this to incorporate to query params
-    return unless @destination == "root"
-    @shoes = current_user.shoes.current.order_by_last_run.order_by_creation
   end
 end

@@ -10,7 +10,7 @@ class ShoesController < ApplicationController
     @shoe = Shoe.new(processed_shoe_params.except(:retire_at_units))
     @shoe.user = current_user
 
-    # TODO: add turbostream!!!
+    # TODO: add turbostream!!! creating a new shoe will always prepend to "shoes"
 
     if @shoe.save
       redirect_to @shoe #will change
@@ -21,6 +21,8 @@ class ShoesController < ApplicationController
   end
 
   def update
+    # TODO: add turbostream response
+    
     if @shoe.update(processed_shoe_params.except(:retire_at_units))
       redirect_to @shoe #will change
       flash[:notice] = "Shoe successfully updated."
@@ -53,7 +55,7 @@ class ShoesController < ApplicationController
   end
 
   def show
-    @runs = @shoe.runs
+    @runs = @shoe.runs.reverse_order_by_date
   end
 
   private

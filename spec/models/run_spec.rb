@@ -114,4 +114,6 @@ RSpec.describe Run, type: :model do
       expect(Run.order_by_date.last.distance).to eq(5)
     end
   end
+
+  #TODO: test for reverse order by date
 end

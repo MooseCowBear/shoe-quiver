@@ -5,7 +5,6 @@
   <% end %>
   <%= turbo_stream.prepend "runs", partial: "runs/run", locals: { run: @run } %>
 <% else %>
-  <%= turbo_stream.remove @shoe %>
-  <%= turbo_stream.update "shoes", partial: "shoes/shoe", collection: @shoes, as: :shoe, locals: { show: false } %>
+  <%= turbo_stream.replace "#{dom_id(@shoe)}_container", partial: "shoes/shoe", locals: { shoe: @shoe, show: false } %>
   <%= turbo_stream.remove "new_run_form" %>
 <% end %>

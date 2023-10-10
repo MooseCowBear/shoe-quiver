@@ -1,4 +1,4 @@
-<li id='<%="#{dom_id(run)}_container"%>' class="">
+<li id='<%="#{dom_id(run)}_container"%>' class="" data-sort-code='<%= run.date.to_time.to_i %>'>
   <%= turbo_frame_tag dom_id(run), class:"grid grid-cols-[1fr,_auto] gap-x-2 p-5 rounded-md bg-neutral-100 border-2 border-eggplant/20" do %>
     <h3><%= run.date.strftime("%m/%-d/%y") %></h3>
     <% if run.felt == "good" %>
