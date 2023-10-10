@@ -1,0 +1,3 @@
+<%= turbo_stream.replace "#{dom_id(@shoe)}_container" do %>
+  <%= render partial: "shoes/shoe", locals: { shoe: @shoe, show: true } %>
+<% end %>

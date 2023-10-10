@@ -1,14 +1,11 @@
 import { Controller } from "@hotwired/stimulus";
 
-// Q: will this work with changes to attributes as well?
 export default class extends Controller {
   initialize() {
-    console.log("sort controller was initialized on elem", this);
     this.observeMutations(sortChildren);
   }
 
   observeMutations(callback) {
-    console.log("callback", callback);
     const observer = new MutationObserver((mutations) => {
       mutations.forEach(function (mutation) {
         console.log(mutation.type);
@@ -16,7 +13,6 @@ export default class extends Controller {
       callback(this.element);
     });
     const config = { attributes: true, childList: true, subtree: true };
-    console.log("in observe mutations", this, this.element);
     observer.observe(this.element, config);
   }
 }
