@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     resources :runs, only: [:new, :create, :edit, :update]
   end
 
+  resources :archive, only: [:index, :update, :destroy]
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root "shoes#index"
 end

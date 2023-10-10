@@ -15,7 +15,7 @@ module ShoesHelper
     # for getting the right color for shoe card
     return "" if shoe.new_record?
     mileage_used = shoe.percent_retire_mileage
-    if mileage_used < 1
+    if shoe.mileage < 1
       "eggplant"
     elsif mileage_used < 50
       "mint"

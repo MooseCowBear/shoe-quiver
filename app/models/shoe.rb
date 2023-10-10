@@ -15,6 +15,7 @@ class Shoe < ApplicationRecord
 
   scope :order_by_last_run, -> { order('last_run_in ASC NULLS FIRST' ) }
   scope :order_by_creation, -> { order(created_at: :desc) }
+  scope :order_by_retirement, -> { order(retired_on: :desc) }
 
   def percent_retire_mileage
     (mileage / retire_at) * 100

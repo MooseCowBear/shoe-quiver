@@ -37,7 +37,10 @@ class RunsController < ApplicationController
 
   def update
     #also will want to redirect based on where you came from (either shoe show or run show)
-    if @run.update(processed_run_params.except(:hours, :minutes, :seconds, :distance_units, :referrer))
+    if @run.update(
+      processed_run_params
+        .except(:hours, :minutes, :seconds, :distance_units, :referrer)
+    )
       respond_to do |format|
         format.html { redirect_to @run.shoe, notice: "Run successfully updated." }
         format.turbo_stream { flash[:now] = "Run was successfully updated." }
@@ -78,8 +81,11 @@ class RunsController < ApplicationController
       cleaned_distance = km_to_miles(run_params[:distance].to_i).round(2)
       processed_params = processed_params.merge(distance: cleaned_distance)
     end
-    duration_in_seconds = run_params[:hours].to_i * 60 * 60 + run_params[:minutes].to_i * 60 + run_params[:seconds].to_i
-    processed_params = processed_params.merge(duration: duration_in_seconds, felt: run_params[:felt].to_i)
+    duration_in_seconds = run_params[:hours].to_i * 60 * 60 
+      + run_params[:minutes].to_i * 60 
+      + run_params[:seconds].to_i
+    processed_params = processed_params
+      .merge(duration: duration_in_seconds, felt: run_params[:felt].to_i)
   end
 
   def set_referrer
