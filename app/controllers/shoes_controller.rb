@@ -21,11 +21,11 @@ class ShoesController < ApplicationController
   end
 
   def update
-    # TODO: add turbostream response
-    
     if @shoe.update(processed_shoe_params.except(:retire_at_units))
-      redirect_to @shoe #will change
-      flash[:notice] = "Shoe successfully updated."
+      respond_to do |format|
+        format.html { redirect_to @shoe, notice: "Shoe successfully updated." }
+        format.turbo_stream { flash.now[:notice] = "Shoe successfully updated." } 
+      end
     else
       render :edit, status: :unprocessable_entity
     end
