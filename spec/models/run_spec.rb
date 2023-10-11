@@ -115,5 +115,97 @@ RSpec.describe Run, type: :model do
     end
   end
 
-  #TODO: test for reverse order by date
+  describe(".reverse_order_by_date") do
+    it "sorts most recent run first" do
+      shoe1 = create(:shoe, user: @user)
+      run1 = create(:run, distance: 10, date: 3.days.ago, user: @user, shoe: shoe1)
+      run2 = create(:run, distance: 5, date: 1.day.ago, user: @user, shoe: shoe1)
+
+      expect(Run.reverse_order_by_date.first.distance).to eq(5)
+    end
+  end
+
+  describe(".from_year") do
+    before(:each) do
+      @shoe1 = create(:shoe, user: @user)
+      @run1 = create(:run, distance: 10, date: Date.current, user: @user, shoe: @shoe1)
+    end 
+
+    it "includes runs from year" do
+      expect(Run.from_year(Date.current)).to include(@run1)
+    end
+
+    it "excludes runs from other years" do
+      run2 = create(:run, distance: 100, date: 2.years.ago, user: @user, shoe: @shoe1)
+      expect(Run.from_year(Date.current)).not_to include(run2)
+    end
+  end
+
+  describe(".from_month") do
+    before(:each) do
+      @shoe1 = create(:shoe, user: @user)
+      @run1 = create(:run, distance: 10, date: Date.current, user: @user, shoe: @shoe1)
+    end 
+
+    it "includes runs from month" do
+      expect(Run.from_month(Date.current)).to include(@run1)
+    end
+
+    it "excludes runs from other months" do
+      run2 = create(:run, distance: 100, date: 2.months.ago, user: @user, shoe: @shoe1)
+      expect(Run.from_month(Date.current)).not_to include(run2)
+    end
+  end
+
+  describe(".from_week") do
+    before(:each) do
+      @shoe1 = create(:shoe, user: @user)
+      @run1 = create(:run, distance: 10, date: Date.current, user: @user, shoe: @shoe1)
+    end 
+
+    it "includes runs from week" do
+      expect(Run.from_week(Date.current)).to include(@run1)
+    end
+
+    it "excludes runs from other weeks" do
+      run2 = create(:run, distance: 100, date: 2.weeks.ago, user: @user, shoe: @shoe1)
+      expect(Run.from_week(Date.current)).not_to include(run2)
+    end
+  end
+
+  describe(".recent_average_mileage") do
+    it "calculates average mileage among scope of runs" do
+      shoe1 = create(:shoe, user: @user)
+      run1 = create(:run, distance: 10, date: Date.current, user: @user, shoe: shoe1)
+      run2 = create(:run, distance: 4, date: 1.day.ago, user: @user, shoe: shoe1)
+      run3 = create(:run, distance: 40, date: 2.months.ago, user: @user, shoe: shoe1)
+
+      res = Run.recent_average_mileage(Run.method(:from_month))
+      expect(res).to eq(7)
+    end
+  end
+
+  describe(".average_distance") do
+    it "returns average distance of runs" do
+      shoe1 = create(:shoe, user: @user)
+      run1 = create(:run, distance: 10, date: Date.current, user: @user, shoe: shoe1)
+      run2 = create(:run, distance: 12, date: 1.day.ago, user: @user, shoe: shoe1)
+      run3 = create(:run, distance: 8, date: 2.months.ago, user: @user, shoe: shoe1)
+
+      res = Run.average_distance
+      expect(res).to eq(10)
+    end
+  end
+
+  describe(".average_duration") do
+    it "returns average duration of runs" do
+      shoe1 = create(:shoe, user: @user)
+      run1 = create(:run, duration: 100, date: Date.current, user: @user, shoe: shoe1)
+      run2 = create(:run, duration: 200, date: 1.day.ago, user: @user, shoe: shoe1)
+      run3 = create(:run, duration: 300, date: 2.months.ago, user: @user, shoe: shoe1)
+
+      res = Run.average_duration
+      expect(res).to eq(200)
+    end
+  end
 end

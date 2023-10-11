@@ -17,6 +17,16 @@ class Shoe < ApplicationRecord
   scope :order_by_creation, -> { order(created_at: :desc) }
   scope :order_by_retirement, -> { order(retired_on: :desc) }
 
+  #scope :average_retirement_mileage, -> { archived.average(:mileage) }
+
+  def self.top_by_mileage_accumulation
+    order(Arel.sql('mileage / (now() - created_at)')).limit(3)
+  end
+
+  def self.average_retirement_mileage
+    archived.average(:mileage)
+  end
+
   def percent_retire_mileage
     (mileage / retire_at) * 100
   end

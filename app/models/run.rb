@@ -14,6 +14,23 @@ class Run < ApplicationRecord
   scope :order_by_date, -> { order(date: :asc) }
   scope :reverse_order_by_date, -> { order(date: :desc) } #most recent runs first
 
+  scope :from_year, ->(date) { where(date: date.beginning_of_year..date.end_of_year) }
+  scope :from_month, ->(date) { where(date: date.beginning_of_month..date.end_of_month) }
+  scope :from_week, ->(date) { where(date: date.beginning_of_week..date.end_of_week) }
+
+  # will this work? if call with Class.method(:from_year), etc?
+  def self.recent_average_mileage(recent_scope)
+    recent_scope.call(Date.current).average(:distance)
+  end
+
+  def self.average_distance
+    average(:distance)
+  end
+
+  def self.average_duration
+    average(:duration)
+  end
+
   private 
 
   #after create 
