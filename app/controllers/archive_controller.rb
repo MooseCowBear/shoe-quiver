@@ -1,6 +1,9 @@
 class ArchiveController < ApplicationController
-  # TODO: move confirm_ownership to application controller and check here before update and destroy
   before_action :set_shoe, only: [:update, :destroy]
+
+  before_action only: [:update, :destroy] do
+    confirm_ownership(@shoe, "Only the owner of a shoe may modify it.")
+  end
 
   def index
     if params[:category]
@@ -17,13 +20,13 @@ class ArchiveController < ApplicationController
   def update
     # retiring a shoe
     @shoe.update(retired_on: DateTime.now)
-    redirect_to archive_index_path #not right...
+    redirect_to archive_index_path 
   end
 
   def destroy
     # un-retiring a shoe
     @shoe.update(retired_on: nil)
-    redirect_to root_path #not right...
+    redirect_to root_path 
   end
 
   private 

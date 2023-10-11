@@ -1,6 +1,9 @@
 class ShoesController < ApplicationController
   before_action :set_shoe, only: [:show, :edit, :update, :destroy]
-  before_action :confirm_ownership, only: [:show, :edit, :update, :destroy]
+
+  before_action only: [:show, :edit, :update, :destroy] do
+    confirm_ownership(@shoe, "Only the owner of a shoe may view or modify it.")
+  end
 
   def new
     @shoe = Shoe.new
@@ -76,13 +79,5 @@ class ShoesController < ApplicationController
 
   def set_shoe 
     @shoe = Shoe.find(params[:id])
-  end
-
-  # will need to do this for runs too, so will move to application controller
-  def confirm_ownership
-    unless @shoe.user == current_user
-      flash[:alert] = "Only a shoe's owner may view or modify it."
-      redirect_to root_path
-    end
   end
 end

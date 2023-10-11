@@ -1,6 +1,11 @@
 class RunsController < ApplicationController
   before_action :set_shoe, only: [:new, :create]
-  before_action :set_run, only: [:edit, :update, :destroy]
+  before_action :set_run, only: [:edit, :update, :destroy, :show]
+
+  before_action only: [:show, :edit, :update, :destroy] do
+    confirm_ownership(@run, "Only the owner of a run may view or modify it.")
+  end
+
   before_action :set_referrer, only: [:new, :edit, :destroy]
   before_action :set_destination, only: [:create, :update]
 
