@@ -142,4 +142,16 @@ RSpec.describe Shoe, type: :model do
       expect(res[0].created_at).to be > res[1].created_at
     end
   end
+
+  describe ".average_retirement_mileage" do
+    it "returns average mileage among retired shoes" do
+      user = create(:user)
+      shoe1 = create(:shoe, :retired, mileage: 100, user: user)
+      shoe2 = create(:shoe, :retired, mileage: 200, user: user)
+      shoe3 = create(:shoe, mileage: 100, user: user)
+
+      res = Shoe.average_retirement_mileage
+      expect(res).to eq(150)
+    end
+  end
 end
