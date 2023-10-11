@@ -153,5 +153,11 @@ RSpec.describe Shoe, type: :model do
       res = Shoe.average_retirement_mileage
       expect(res).to eq(150)
     end
+
+    it "returns nil if no retired shoes" do
+      user = create(:user)
+      res = Shoe.average_retirement_mileage
+      expect(res).to be(nil)
+    end
   end
 end

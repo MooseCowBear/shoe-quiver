@@ -1,0 +1,56 @@
+<div class="w-[clamp(300px,_60vw,_600px)] flex flex-col gap-4 border p-5 rounded bg-mint">
+  <h1 class="text-3xl font-semibold uppercase tracking-wider border-b-2 border-nautral-50">Stats</h1>
+  <div class="flex flex-col">
+    <h3 class="uppercase tracking-wider text-medium">I ran</h3>
+      <div class="grid grid-cols-[1fr,_auto] gap-x-2">
+        <h2 class="text-xl font-bold">This Year</h2>
+        <% if @this_year %>
+          <p class="justify-self-end self-end"><%= distance_display(@this_year, "mi") %></p>
+        <% else %>
+          <p class="justify-self-end self-end">Yet to record mileage.</p>
+        <% end %>
+        <h2 class="text-xl font-bold">This Month</h2>
+        <% if @this_month %>
+          <p class="justify-self-end self-end"><%= distance_display(@this_month, "mi") %></p>
+        <% else %>
+          <p class="justify-self-end self-end">Yet to record mileage.</p>
+        <% end %>
+        <h2 class="text-xl font-bold">This Week</h2>
+        <% if @this_week %>
+          <p class="justify-self-end self-end"><%= distance_display(@this_week, "mi") %></p>
+        <% else %>
+          <p class="justify-self-end self-end">Yet to record mileage.</p>
+        <% end %>
+      </div>
+  </div>
+
+  <div class="flex flex-col">
+    <h3 class="uppercase tracking-wider text-medium">My Averages</h3>
+    <div class="grid grid-cols-[1fr,_auto] gap-x-2">
+      <% if @avg_distance %>
+        <h2 class="text-xl font-bold">Distance</h2>
+        <p class="justify-self-end self-end"><%= distance_display(@avg_distance, "mi") %></p>
+        <h2 class="text-xl font-bold">Duration</h2>
+        <p class="justify-self-end self-end"><%= duration_display(@avg_duration) %></p>
+        <h2 class="text-xl font-bold">Pace</h2>
+        <p class="justify-self-end self-end"><%= pace_display(@avg_distance, @avg_duration, "mi") %></p>
+      <% end %>
+      <% if @avg_retirement_mileage %>
+        <h2 class="text-xl font-bold">Average Retirement Distance</h2>
+        <p class="justify-self-end self-end"><%= distance_display(@avg_retirement_mileage, "mi") %></p>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="flex flex-col">
+    <h3 class="uppercase tracking-wider text-medium">My Shoes</h3>
+    <div class="grid grid-cols-[1fr,_auto] gap-x-2">
+      <h2 class="text-xl font-bold">Avg Retirement Distance</h2>
+      <% if @avg_retirement_mileage %>
+        <p class="justify-self-end self-end text-right"><%= distance_display(@avg_retirement_mileage, "mi") %></p>
+      <% else %>
+        <p class="justify-self-end self-end text-right">You haven't retired any shoes.</p>
+      <% end %>
+    </div>
+  </div>
+</div>

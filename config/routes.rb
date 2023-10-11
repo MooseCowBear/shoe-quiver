@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   end
 
   resources :archive, only: [:index, :update, :destroy]
+  resources :statistics, only: [:index]
 
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root "shoes#index"
 end

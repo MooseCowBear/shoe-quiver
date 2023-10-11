@@ -42,7 +42,7 @@
       <% end %>
 
       <% if user_signed_in? %>
-        <p>Stats</p>
+        <%= link_to "Stats", statistics_path, class: "font-semibold uppercase tracking-wider" %>
       <% end %>
     </header>
     <main class="flex flex-col gap-3 items-center border">

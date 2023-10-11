@@ -89,7 +89,7 @@ RSpec.describe "Shoes", type: :request do
     end
   end
 
-  describe "GET /destroy" do
+  describe "DELETE /destroy" do
     before(:each) do
       sign_in @user1
     end
