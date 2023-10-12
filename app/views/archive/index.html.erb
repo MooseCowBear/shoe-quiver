@@ -38,12 +38,12 @@
     <%= render partial: "archive/shoe", collection: @shoes, as: :shoe %>
   </ul>
 
-  <div class="flex justify-between">
+  <div class="">
     <% if @pagy.prev %>
-      <%= link_to "< Previous", archive_index_path(page: @pagy.prev), class: "" %>
+      <%= link_to "< Previous", archive_index_path(page: @pagy.prev), class: "float-left" %>
     <% end %>
     <% if @pagy.next %>
-      <%= link_to "Next >", archive_index_path(page: @pagy.next), class: "" %>
+      <%= link_to "Next >", archive_index_path(page: @pagy.next), class: "float-right" %>
     <% end %>
   </div>
 </div>

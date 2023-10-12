@@ -12,14 +12,8 @@ class ArchiveController < ApplicationController
         .archived
         .where(category: params[:category].to_i)
         .order_by_retirement, items: 10)
-      # @shoes = current_user
-      #   .shoes
-      #   .archived
-      #   .where(category: params[:category].to_i)
-      #   .order_by_retirement
     else
       @pagy, @shoes = pagy(current_user.shoes.archived.order_by_retirement, items: 10)
-      # @shoes = current_user.shoes.archived.order_by_retirement
     end
   end
 

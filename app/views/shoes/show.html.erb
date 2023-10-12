@@ -8,4 +8,13 @@
   <ul id="runs" class="flex flex-col gap-3" data-controller="sort">
     <%= render @runs %>
   </ul>
+
+  <div class="">
+    <% if @pagy.prev %>
+      <%= link_to "< Previous", shoe_path(page: @pagy.prev), class: "float-left" %>
+    <% end %>
+    <% if @pagy.next %>
+      <%= link_to "Next >", shoe_path(page: @pagy.next), class: "float-right" %>
+    <% end %>
+  </div>
 </div>

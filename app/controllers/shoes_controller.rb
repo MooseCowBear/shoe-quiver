@@ -58,7 +58,7 @@ class ShoesController < ApplicationController
   end
 
   def show
-    @runs = @shoe.runs.reverse_order_by_date
+    @pagy, @runs = pagy(@shoe.runs.reverse_order_by_date, items: 10)
   end
 
   private
