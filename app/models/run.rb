@@ -19,8 +19,8 @@ class Run < ApplicationRecord
   scope :from_week, ->(date) { where(date: date.beginning_of_week..date.end_of_week) }
 
   # will this work? if call with Class.method(:from_year), etc?
-  def self.recent_average_mileage(recent_scope)
-    recent_scope.call(Date.current).average(:distance)
+  def self.recent_mileage(recent_scope)
+    recent_scope.call(Date.current).sum(:distance)
   end
 
   def self.average_distance

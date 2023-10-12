@@ -173,15 +173,15 @@ RSpec.describe Run, type: :model do
     end
   end
 
-  describe(".recent_average_mileage") do
-    it "calculates average mileage among scope of runs" do
+  describe(".recent_mileage") do
+    it "calculates sum of mileage among scope of runs" do
       shoe1 = create(:shoe, user: @user)
       run1 = create(:run, distance: 10, date: Date.current, user: @user, shoe: shoe1)
       run2 = create(:run, distance: 4, date: 1.day.ago, user: @user, shoe: shoe1)
       run3 = create(:run, distance: 40, date: 2.months.ago, user: @user, shoe: shoe1)
 
-      res = Run.recent_average_mileage(Run.method(:from_month))
-      expect(res).to eq(7)
+      res = Run.recent_mileage(Run.method(:from_month))
+      expect(res).to eq(14)
     end
   end
 
