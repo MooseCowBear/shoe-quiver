@@ -1,4 +1,4 @@
-<%= form_with(model: @shoe, id: "#{dom_id(@shoe)}_form", html: { class: "flex flex-col gap-1 items-center p-5 rounded" }) do |form| %>
+<%= form_with(model: @shoe, id: "#{dom_id(@shoe)}_form", html: { class: "flex flex-col gap-1 items-center p-5 rounded #{@shoe.new_record? ? 'border-2' : ''}" }) do |form| %>
   <div class="w-full grid sm:grid-cols-2 md:grid-cols-3 gap-x-2">
     <div class="flex flex-col">
       <div class="flex items-baseline gap-1">

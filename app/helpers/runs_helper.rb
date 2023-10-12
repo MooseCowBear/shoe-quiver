@@ -21,4 +21,18 @@ module RunsHelper
     #todo: convert from miles to km if unit is km
     "#{duration_display(duration / mileage)} / #{unit}"
   end
+
+  def feel_category(run)
+    return "neutral-100" if run.new_record?
+    case run.felt
+    when "good"
+      "mint"
+    when "okay"
+      "mustard"
+    when "bad"
+      "poppy"
+    else
+      "neutral-100"
+    end
+  end
 end

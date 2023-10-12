@@ -5,11 +5,11 @@
     <%= render @shoe, show: true %>
   </ul>
 
-  <ul id="runs" class="flex flex-col gap-3" data-controller="sort">
+  <ul id="runs" class="flex flex-col gap-3 px-3" data-controller="sort">
     <%= render @runs %>
   </ul>
 
-  <div class="">
+  <div class="px-3">
     <% if @pagy.prev %>
       <%= link_to "< Previous", shoe_path(page: @pagy.prev), class: "float-left" %>
     <% end %>
