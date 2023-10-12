@@ -1,4 +1,4 @@
-<div class="w-[clamp(300px,_80vw,_1000px)] flex flex-col gap-2 border">
+<div class="w-[clamp(300px,_80vw,_1000px)] flex flex-col gap-2 border"> 
   
   <div class="flex justify-center items-baseline gap-3">
     <h1 class="text-3xl font-semibold uppercase tracking-wider">Archive</h1>
@@ -37,4 +37,13 @@
   <ul id="retired_shoes" class="flex flex-col gap-3">
     <%= render partial: "archive/shoe", collection: @shoes, as: :shoe %>
   </ul>
+
+  <div class="flex justify-between">
+    <% if @pagy.prev %>
+      <%= link_to "< Previous", archive_index_path(page: @pagy.prev), class: "" %>
+    <% end %>
+    <% if @pagy.next %>
+      <%= link_to "Next >", archive_index_path(page: @pagy.next), class: "" %>
+    <% end %>
+  </div>
 </div>

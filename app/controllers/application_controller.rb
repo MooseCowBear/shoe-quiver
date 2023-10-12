@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include Pagy::Backend
+  
   before_action :authenticate_user!, unless: :devise_controller?
 
   helper_method :km_to_miles

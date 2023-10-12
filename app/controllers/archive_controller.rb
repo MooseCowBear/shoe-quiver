@@ -7,13 +7,19 @@ class ArchiveController < ApplicationController
 
   def index
     if params[:category]
-      @shoes = current_user
+      @pagy, @shoes = pagy(current_user
         .shoes
         .archived
         .where(category: params[:category].to_i)
-        .order_by_retirement
+        .order_by_retirement, items: 10)
+      # @shoes = current_user
+      #   .shoes
+      #   .archived
+      #   .where(category: params[:category].to_i)
+      #   .order_by_retirement
     else
-      @shoes = current_user.shoes.archived.order_by_retirement
+      @pagy, @shoes = pagy(current_user.shoes.archived.order_by_retirement, items: 10)
+      # @shoes = current_user.shoes.archived.order_by_retirement
     end
   end
 
