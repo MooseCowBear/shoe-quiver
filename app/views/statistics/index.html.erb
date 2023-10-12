@@ -35,10 +35,6 @@
         <h2 class="text-xl font-bold">Pace</h2>
         <p class="justify-self-end self-end"><%= pace_display(@avg_distance, @avg_duration, "mi") %></p>
       <% end %>
-      <% if @avg_retirement_mileage %>
-        <h2 class="text-xl font-bold">Average Retirement Distance</h2>
-        <p class="justify-self-end self-end"><%= distance_display(@avg_retirement_mileage, "mi") %></p>
-      <% end %>
     </div>
   </div>
 
