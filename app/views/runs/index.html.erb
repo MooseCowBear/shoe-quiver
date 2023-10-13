@@ -1,4 +1,10 @@
-<div>
-  <h1 class="font-bold text-4xl">Runs#index</h1>
-  <p>Find me in app/views/runs/index.html.erb</p>
+<div class="w-[clamp(300px,_80vw,_1000px)] flex flex-col gap-2">
+  <%= month_calendar(attribute: :date, events: @runs) do |date, runs| %>
+    <p class="text-right font-semibold px-2"><%= date.day %></p>
+    <% runs.each do |run| %>
+      <div class='<%= "bg-#{feel_category(run)}" %> rounded py-1 text-center m-1'>
+        <%= distance_display(run.distance, "mi") %>
+      </div>
+    <% end %>
+  <% end %>
 </div>

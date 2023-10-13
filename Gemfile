@@ -73,3 +73,5 @@ gem "devise"
 gem "tailwindcss-rails", "~> 2.0"
 
 gem "pagy", "~> 6.1"
+
+gem "simple_calendar", "~> 3.0"
