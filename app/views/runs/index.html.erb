@@ -4,7 +4,7 @@
     <% runs.each do |run| %>
       <%= link_to run_path(run) do %>
         <div class='<%= "#{feel_category(run)}" %> rounded py-1 text-center m-1'>
-          <%= distance_display(run.distance, "mi") %>
+          <%= distance_display(run.distance, current_user.unit) %>
         </div>
       <% end %>
     <% end %>

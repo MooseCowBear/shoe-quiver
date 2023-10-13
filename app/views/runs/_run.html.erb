@@ -17,7 +17,7 @@
       <span></span>
     <% end %>
     <div class="col-span-full h-[2px] my-1 bg-mint"></div>
-    <p><%= run.distance %> miles</p> 
+    <p><%= distance_display(run.distance, current_user.unit) %></p> 
     <p class="justify-self-end"><%= duration_display(run.duration)%></p>
     <p><%= run.notes %></p>
     <div class="flex gap-2 items-center">

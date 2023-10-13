@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   resources :archive, only: [:index, :update, :destroy]
   resources :statistics, only: [:index]
+  resources :units, only: [:update]
 
   root "shoes#index"
 end

@@ -14,12 +14,20 @@ module RunsHelper
 
   def distance_display(mileage, unit)
     # todo: make responsive to preferences
-    "#{mileage.round(2).to_s} #{unit}"
+    if unit == "mi"
+      "#{mileage.round(2).to_s} #{unit}"
+    else 
+      "#{miles_to_km(mileage).round(2).to_s} #{unit}"
+    end
   end
 
   def pace_display(mileage, duration, unit)
     #todo: convert from miles to km if unit is km
-    "#{duration_display(duration / mileage)} / #{unit}"
+    if unit == "mi"
+      "#{duration_display(duration / mileage)} / #{unit}"
+    else
+      "#{duration_display(duration / miles_to_km(mileage))} / #{unit}"
+    end
   end
 
   def feel_category(run)

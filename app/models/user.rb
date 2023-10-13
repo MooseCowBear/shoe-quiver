@@ -6,4 +6,6 @@ class User < ApplicationRecord
 
   has_many :shoes, dependent: :destroy
   has_many :runs, dependent: :destroy
+
+  enum :unit, { mi: 0, km: 1 }
 end

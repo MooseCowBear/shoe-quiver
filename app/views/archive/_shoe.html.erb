@@ -11,7 +11,7 @@
       </span>
     </h3>
     <div class="flex gap-2 items-center row-start-3 md:row-start-1 md:justify-self-end">
-      <p><%= shoe.mileage.to_f %></p>
+      <p><%= distance_display(shoe.mileage, current_user.unit) %></p>
       
         <%= link_to shoe_path(shoe), data: {turbo_frame: "_top"}, class: "h-7 w-7" do %> 
           <svg class="<%= shoe_wear_category(shoe) == "mustard" ? "fill-eggplant" : "fill-neutral-50" %>" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

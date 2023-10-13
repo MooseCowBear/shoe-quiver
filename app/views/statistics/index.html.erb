@@ -5,19 +5,19 @@
       <div class="grid grid-cols-[1fr,_auto] gap-x-2">
         <h2 class="text-xl font-bold">This Year</h2>
         <% if @this_year %>
-          <p class="justify-self-end self-end"><%= distance_display(@this_year, "mi") %></p>
+          <p class="justify-self-end self-end"><%= distance_display(@this_year, current_user.unit) %></p>
         <% else %>
           <p class="justify-self-end self-end">Yet to record mileage.</p>
         <% end %>
         <h2 class="text-xl font-bold">This Month</h2>
         <% if @this_month %>
-          <p class="justify-self-end self-end"><%= distance_display(@this_month, "mi") %></p>
+          <p class="justify-self-end self-end"><%= distance_display(@this_month, current_user.unit) %></p>
         <% else %>
           <p class="justify-self-end self-end">Yet to record mileage.</p>
         <% end %>
         <h2 class="text-xl font-bold">This Week</h2>
         <% if @this_week %>
-          <p class="justify-self-end self-end"><%= distance_display(@this_week, "mi") %></p>
+          <p class="justify-self-end self-end"><%= distance_display(@this_week, current_user.unit) %></p>
         <% else %>
           <p class="justify-self-end self-end">Yet to record mileage.</p>
         <% end %>
@@ -29,11 +29,11 @@
     <div class="grid grid-cols-[1fr,_auto] gap-x-2">
       <% if @avg_distance %>
         <h2 class="text-xl font-bold">Distance</h2>
-        <p class="justify-self-end self-end"><%= distance_display(@avg_distance, "mi") %></p>
+        <p class="justify-self-end self-end"><%= distance_display(@avg_distance, current_user.unit) %></p>
         <h2 class="text-xl font-bold">Duration</h2>
         <p class="justify-self-end self-end"><%= duration_display(@avg_duration) %></p>
         <h2 class="text-xl font-bold">Pace</h2>
-        <p class="justify-self-end self-end"><%= pace_display(@avg_distance, @avg_duration, "mi") %></p>
+        <p class="justify-self-end self-end"><%= pace_display(@avg_distance, @avg_duration, current_user.unit) %></p>
       <% end %>
     </div>
   </div>
@@ -43,7 +43,7 @@
     <div class="grid grid-cols-[1fr,_auto] gap-x-2">
       <h2 class="text-xl font-bold">Avg Retirement Distance</h2>
       <% if @avg_retirement_mileage %>
-        <p class="justify-self-end self-end text-right"><%= distance_display(@avg_retirement_mileage, "mi") %></p>
+        <p class="justify-self-end self-end text-right"><%= distance_display(@avg_retirement_mileage, current_user.unit) %></p>
       <% else %>
         <p class="justify-self-end self-end text-right">You haven't retired any shoes.</p>
       <% end %>

@@ -42,7 +42,17 @@
       <% end %>
 
       <% if user_signed_in? %>
-        <%= link_to "Stats", statistics_path, class: "font-semibold uppercase tracking-wider" %>
+        <% if current_user.unit == "mi" %>
+          <%= button_to "Switch to KM", unit_path(current_user.id),   
+              params: { user: { unit: "km" } }, 
+              class: "font-bold lowercase border-b-2 border-transparent hover:border-eggplant",
+              method: :put %>
+        <% else %>
+          <%= button_to "Switch to Mi", unit_path(current_user.id),   
+              params: { user: { unit: "mi" } }, 
+              class: "font-bold lowercase border-b-2 border-transparent hover:border-eggplant",
+              method: :put %>
+        <% end %>
       <% end %>
     </header>
     <main class="flex flex-col gap-3 items-center">
