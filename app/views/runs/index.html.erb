@@ -2,7 +2,7 @@
   <%= month_calendar(attribute: :date, events: @runs) do |date, runs| %>
     <p class="text-right font-semibold px-2"><%= date.day %></p>
     <% runs.each do |run| %>
-      <div class='<%= "bg-#{feel_category(run)}" %> rounded py-1 text-center m-1'>
+      <div class='bg-<%= "#{feel_category(run)}" %> rounded py-1 text-center m-1'>
         <%= distance_display(run.distance, "mi") %>
       </div>
     <% end %>

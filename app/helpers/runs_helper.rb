@@ -23,16 +23,16 @@ module RunsHelper
   end
 
   def feel_category(run)
-    return "neutral-100" if run.new_record?
+    return "" if run.new_record?
     case run.felt
     when "good"
-      "mint"
+      "mint text-neutral-50"
     when "okay"
       "mustard"
     when "bad"
-      "poppy"
+      "poppy text-neutral-50"
     else
-      "neutral-100"
+      "neutral-200"
     end
   end
 end
