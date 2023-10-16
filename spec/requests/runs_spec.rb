@@ -1,53 +1,66 @@
 require 'rails_helper'
 
 RSpec.describe "Runs", type: :request do
+  before(:each) do
+    @user = create(:user)
+    sign_in @user
+    @shoe = create(:shoe, user: @user)
+    @run = create(:run, user: @user, shoe: @shoe)
+  end
+
   describe "GET /index" do
     it "returns http success" do
-      get "/runs/index"
+      get runs_path
       expect(response).to have_http_status(:success)
     end
   end
 
+  # is this going to stay?
   describe "GET /show" do
     it "returns http success" do
-      get "/runs/show"
+      get run_path(@run) 
       expect(response).to have_http_status(:success)
     end
   end
 
   describe "GET /new" do
     it "returns http success" do
-      get "/runs/new"
+      get new_shoe_run_path(@shoe) 
       expect(response).to have_http_status(:success)
     end
   end
 
-  describe "GET /create" do
-    it "returns http success" do
-      get "/runs/create"
-      expect(response).to have_http_status(:success)
+  describe "POST /create" do
+    it "creates a run" do
+      expect {
+        post shoe_runs_path(shoe_id: @shoe), params: {
+          run: { hours: 0, minutes: 20, seconds: 0, distance: 2, date: 1.day.ago, distance_units: "mi", notes: "", felt: 1, referrer: "shoe" }
+        }
+      }.to change(Run, :count).by(1)
     end
   end
 
   describe "GET /edit" do
     it "returns http success" do
-      get "/runs/edit"
+      get edit_run_path(@run) 
       expect(response).to have_http_status(:success)
     end
   end
 
-  describe "GET /update" do
+  describe "POST /update" do
     it "returns http success" do
-      get "/runs/update"
-      expect(response).to have_http_status(:success)
+      patch run_path(@run), params: {
+          run: { hours: 0, minutes: 20, seconds: 0, distance: 2, date: 1.day.ago, distance_units: "mi", notes: "", felt: 1, referrer: "shoe" }
+        }
+      expect(response).to redirect_to(shoe_path(@shoe))
     end
   end
 
-  describe "GET /destroy" do
-    it "returns http success" do
-      get "/runs/destroy"
-      expect(response).to have_http_status(:success)
+  describe "DELETE /destroy" do
+    it "destroys run" do
+      expect {
+        delete run_path(@run)
+      }.to change(Run, :count).by(-1)
     end
   end
-
 end

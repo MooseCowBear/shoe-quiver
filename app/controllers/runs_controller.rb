@@ -94,9 +94,6 @@ class RunsController < ApplicationController
   def set_referrer
     # MARK: if end up allowing destroy from run show or run index, then setting of referrer will change
     # would need if root_url || shoes_url, if runs_url, if run_url(@run), else (shoe#show)
-    puts "REFERRER IS:"
-    pp request.referrer
-
     if request.referrer == root_url || request.referrer == shoes_url
       @referrer = "root"
     else
