@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe "Shoes", type: :request do
-
   before(:each) do
     @user1 = create(:user)
     @user2 = create(:user, email: "other@test.com")
