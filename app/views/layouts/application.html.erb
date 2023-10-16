@@ -42,12 +42,12 @@
 
       <% if user_signed_in? %>
         <% if current_user.unit == "mi" %>
-          <%= button_to "Switch to KM", unit_path(current_user.id),   
+          <%= button_to "Switch to KM", units_path,   
               params: { user: { unit: "km" } }, 
               class: "font-bold lowercase border-b-2 border-transparent hover:border-eggplant",
               method: :put %>
         <% else %>
-          <%= button_to "Switch to Mi", unit_path(current_user.id),   
+          <%= button_to "Switch to Mi", units_path,   
               params: { user: { unit: "mi" } }, 
               class: "font-bold lowercase border-b-2 border-transparent hover:border-eggplant",
               method: :put %>
@@ -55,9 +55,8 @@
       <% end %>
     </header>
     <main class="flex flex-col gap-3 items-center">
-      <div>
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
+      <div id="flash" class="">
+        <%= render "layouts/flash" %>
       </div>
       <%= yield %>
     </main>

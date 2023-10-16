@@ -15,7 +15,6 @@ class RunsController < ApplicationController
   end
 
   def show
-    #details of the run, separate page
   end
 
   def new
@@ -87,9 +86,7 @@ class RunsController < ApplicationController
       cleaned_distance = km_to_miles(run_params[:distance].to_i).round(2)
       processed_params = processed_params.merge(distance: cleaned_distance)
     end
-    duration_in_seconds = run_params[:hours].to_i * 60 * 60 
-      + run_params[:minutes].to_i * 60 
-      + run_params[:seconds].to_i
+    duration_in_seconds = processed_params[:hours].to_i * 60 * 60 + processed_params[:minutes].to_i * 60 + processed_params[:seconds].to_i
     processed_params = processed_params
       .merge(duration: duration_in_seconds, felt: run_params[:felt].to_i)
   end

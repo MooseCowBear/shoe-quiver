@@ -10,3 +10,5 @@
     locals: { shoe: @shoe, show: false } %>
   <%= turbo_stream.remove "new_run_form" %>
 <% end %>
+
+<%= turbo_stream.update "flash", partial: "layouts/flash" %>
