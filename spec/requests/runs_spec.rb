@@ -38,6 +38,15 @@ RSpec.describe "Runs", type: :request do
         }
       }.to change(Run, :count).by(1)
     end
+
+    it 'returns a turbo stream response' do
+      post shoe_runs_path(shoe_id: @shoe), 
+        params: {
+          run: { hours: 0, minutes: 20, seconds: 0, distance: 2, date: 1.day.ago, distance_units: "mi", notes: "", felt: 1, referrer: "shoe" }
+        }, 
+        as: :turbo_stream
+      expect(response.media_type).to eq Mime[:turbo_stream]
+    end
   end
 
   describe "GET /edit" do
@@ -54,6 +63,15 @@ RSpec.describe "Runs", type: :request do
         }
       expect(response).to redirect_to(shoe_path(@shoe))
     end
+
+    it 'returns a turbo stream response' do
+      patch run_path(@run), 
+        params: {
+          run: { hours: 0, minutes: 20, seconds: 0, distance: 2, date: 1.day.ago, distance_units: "mi", notes: "", felt: 1, referrer: "shoe" }
+        }, 
+        as: :turbo_stream
+      expect(response.media_type).to eq Mime[:turbo_stream]
+    end
   end
 
   describe "DELETE /destroy" do
@@ -61,6 +79,11 @@ RSpec.describe "Runs", type: :request do
       expect {
         delete run_path(@run)
       }.to change(Run, :count).by(-1)
+    end
+
+    it 'returns a turbo stream response' do
+      delete run_path(@run), as: :turbo_stream
+      expect(response.media_type).to eq Mime[:turbo_stream]
     end
   end
 end

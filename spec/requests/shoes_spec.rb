@@ -12,7 +12,7 @@ RSpec.describe "Shoes", type: :request do
       get "/shoes/new"
       expect(response).to have_http_status(:success)
     end
-  end
+  end 
 
   describe "POST /create" do
     before(:each) do
@@ -28,7 +28,14 @@ RSpec.describe "Shoes", type: :request do
         }.to change(Shoe, :count).by(1)
       end
 
-      # how test the turbo stream response?
+      it 'returns a turbo stream response' do
+        post shoes_path, 
+          params: {
+            shoe: { brand: "Saucony", model: "Triumph 21" }
+          }, 
+          as: :turbo_stream
+        expect(response.media_type).to eq Mime[:turbo_stream]
+      end
     end
 
     context "with invalid params" do
@@ -53,6 +60,14 @@ RSpec.describe "Shoes", type: :request do
         patch shoe_path(shoe), params: { shoe: { brand: "Brooks", model: "Ghost" } }
         shoe.reload
         expect(shoe.brand).to eq("Brooks")
+      end
+
+      it 'returns a turbo stream response' do
+        shoe = create(:shoe, user: @user1)
+        patch shoe_path(shoe), 
+          params: { shoe: { brand: "Brooks", model: "Ghost" } }, 
+          as: :turbo_stream
+        expect(response.media_type).to eq Mime[:turbo_stream]
       end
     end
 
