@@ -7,7 +7,8 @@
           <span class="text-sm text-pink-500"><%= msg %></span>
         <% end %>
       </div>
-      <%= form.text_field :brand, class: "rounded p-1 bg-neutral-50 border-mint w-full text-eggplant" %>
+      <%= form.text_field :brand, 
+        class: "rounded p-1 bg-neutral-50 border-mint w-full text-eggplant" %>
     </div>
     <div class="flex flex-col">
       <div class="flex items-baseline gap-1">
@@ -16,23 +17,38 @@
           <span class="text-sm text-pink-500"><%= msg %></span>
         <% end %>
       </div>
-      <%= form.text_field :model, class: "rounded p-1 bg-neutral-50 border-mint w-full text-eggplant" %>
+      <%= form.text_field :model, 
+        class: "rounded p-1 bg-neutral-50 border-mint w-full text-eggplant" %>
     </div>
     <div class="flex flex-col">
       <%= form.label :color, "Color:", class: "lowercase text-sm" %>
-      <%= form.text_field :color, class: "rounded p-1 bg-neutral-50 border-mint text-eggplant" %>
+      <%= form.text_field :color, 
+        class: "rounded p-1 bg-neutral-50 border-mint text-eggplant" %>
     </div>
     <div class="flex flex-col">
       <%= form.label :category, "Category:", class: "lowercase text-sm" %>
-      <%= form.select :category, options_for_select(Shoe.categories.map {|k, v| [k.humanize, v]}), {}, { class: "rounded p-1 bg-neutral-50 border-mint text-eggplant" } %>
+      <%= form.select :category, 
+        options_for_select(Shoe.categories.map {|k, v| [k.humanize, v]}), 
+        {}, 
+        { class: "rounded p-1 bg-neutral-50 border-mint text-eggplant" } %>
     </div>
     <div class="flex flex-col">
       <%= form.label :retire_at, "Retire at:", class: "lowercase text-sm" %>
-      <%= form.number_field :retire_at, value: 500, min: 100, max: 600, step: 50, class: "rounded p-1 bg-neutral-50 border-mint text-eggplant" %>
+      <%= form.number_field :retire_at, 
+        value: @shoe.retire_at ? 
+          current_user.unit == "mi" ? @shoe.retire_at : miles_to_km(@shoe.retire_at) : 
+          current_user.unit == "mi" ? 500 : miles_to_km(500).round, 
+        min: 100, 
+        max: 600, 
+        step: 50, 
+        class: "rounded p-1 bg-neutral-50 border-mint text-eggplant" %>
     </div>
     <div class="flex flex-col">
       <%= form.label :retire_at_units, "Units:", class: "lowercase text-sm" %>
-      <%= form.select :retire_at_units, ['mi', 'km'], {}, { class: "rounded p-1 bg-neutral-50 border-mint text-eggplant" } %>
+      <%= form.select :retire_at_units, 
+        ['mi', 'km'], 
+        { selected: current_user.unit }, 
+        { class: "rounded p-1 bg-neutral-50 border-mint text-eggplant" } %>
     </div>
   </div>
   <div class="w-5/6 md:w-1/2 flex justify-between mt-3">

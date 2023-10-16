@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   # needed bc want to allow user to input mileage as km, but then store it as miles
   # so this is for conversion of params before storing to the db
   def km_to_miles(km)
-    (0.621371 * km)
+    (km / 1.60934)
   end
 
   # needed bc want to allow user to see mileage in kms

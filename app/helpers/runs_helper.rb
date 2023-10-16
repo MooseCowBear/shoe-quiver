@@ -13,7 +13,6 @@ module RunsHelper
   end
 
   def distance_display(mileage, unit)
-    # todo: make responsive to preferences
     if unit == "mi"
       "#{mileage.round(2).to_s} #{unit}"
     else 
@@ -22,7 +21,6 @@ module RunsHelper
   end
 
   def pace_display(mileage, duration, unit)
-    #todo: convert from miles to km if unit is km
     if unit == "mi"
       "#{duration_display(duration / mileage)} / #{unit}"
     else

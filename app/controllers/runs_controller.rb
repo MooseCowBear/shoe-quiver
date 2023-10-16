@@ -83,7 +83,7 @@ class RunsController < ApplicationController
     # want to store distance in miles and duration in seconds
     processed_params = run_params.deep_dup
     if (run_params[:distance_units] == "km")
-      cleaned_distance = km_to_miles(run_params[:distance].to_i).round(2)
+      cleaned_distance = km_to_miles(run_params[:distance].to_i)
       processed_params = processed_params.merge(distance: cleaned_distance)
     end
     duration_in_seconds = processed_params[:hours].to_i * 60 * 60 + processed_params[:minutes].to_i * 60 + processed_params[:seconds].to_i
