@@ -1,10 +1,10 @@
-<% if @destination == "shoe" %>
+<% if @referrer == "shoe" %>
   <%= turbo_stream.replace dom_id(@shoe) do %>
     <%= render partial: "shoes/shoe", locals: { shoe: @shoe, show: true } %>
     <%= turbo_stream.remove "new_run_form" %>
   <% end %>
   <%= turbo_stream.prepend "runs", partial: "runs/run", locals: { run: @run } %>
-<% else %>
+<% elsif @referrer == "root" %>
   <%= turbo_stream.replace "#{dom_id(@shoe)}_container", 
     partial: "shoes/shoe", 
     locals: { shoe: @shoe, show: false } %>

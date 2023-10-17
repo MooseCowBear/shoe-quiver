@@ -6,8 +6,7 @@ class RunsController < ApplicationController
     confirm_ownership(@run, "Only the owner of a run may view or modify it.")
   end
 
-  before_action :set_referrer, only: [:new, :edit, :destroy]
-  before_action :set_destination, only: [:create, :update]
+  before_action :set_referrer, only: [:new, :edit, :destroy, :create, :update]
 
   def index
     start_date = params.fetch(:start_date, Date.today).to_date
@@ -22,33 +21,35 @@ class RunsController < ApplicationController
   end
 
   def create
-    @run = Run.new(processed_run_params.except(:hours, :minutes, :seconds, :distance_units, :referrer))
+    @run = Run.new(processed_run_params.except(:hours, :minutes, :seconds, :distance_units))
     @run.user = current_user
     @run.shoe = @shoe
 
     if @run.save
       respond_to do |format|
-        format.html { redirect_to @run, notice: "Run was successfully created." }
+        format.html { redirect_to @shoe, notice: "Run was successfully created." }
         format.turbo_stream { flash.now[:notice] = "Run was successfully created." } 
       end
     else
       render :new, status: :unprocessable_entity
     end
-    #possibly also: run show if came from run index?? if end up giving that option -- would require a different form...
   end
 
   def edit
   end
 
   def update
-    #also will want to redirect based on where you came from (either shoe show or run show)
     if @run.update(
       processed_run_params
-        .except(:hours, :minutes, :seconds, :distance_units, :referrer)
+        .except(:hours, :minutes, :seconds, :distance_units)
     )
       respond_to do |format|
-        format.html { redirect_to @run.shoe, notice: "Run successfully updated." }
-        format.turbo_stream { flash[:now] = "Run was successfully updated." }
+        if @referrer == "edit"
+          format.html { redirect_to runs_path, notice: "Run was successfully updated." } 
+        else
+          format.html { redirect_to @run.shoe, notice: "Run successfully updated." }
+          format.turbo_stream { flash[:now] = "Run was successfully updated." }
+        end
       end
     else
       render :edit, status: :unprocessable_entity
@@ -76,7 +77,7 @@ class RunsController < ApplicationController
 
   def run_params
     params.require(:run)
-      .permit(:date, :distance, :distance_units, :hours, :minutes, :seconds, :felt, :notes, :referrer)
+      .permit(:date, :distance, :distance_units, :hours, :minutes, :seconds, :felt, :notes)
   end
 
   def processed_run_params
@@ -92,16 +93,14 @@ class RunsController < ApplicationController
   end
 
   def set_referrer
-    # MARK: if end up allowing destroy from run show or run index, then setting of referrer will change
-    # would need if root_url || shoes_url, if runs_url, if run_url(@run), else (shoe#show)
     if request.referrer == root_url || request.referrer == shoes_url
       @referrer = "root"
+    elsif request.referrer == edit_run_url(@run)
+      @referrer = "edit"
+    elsif request.referrer == runs_url
+      @referrer = "runs"
     else
       @referrer = "shoe"
     end
-  end
-
-  def set_destination 
-    @destination = run_params[:referrer]
   end
 end
