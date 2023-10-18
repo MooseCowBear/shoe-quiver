@@ -1,4 +1,4 @@
-<%= form_with(model: [@shoe, @run], id: "#{dom_id(@run)}_form",  html: { class: "flex flex-col gap-1 items-center py-2 px-5 rounded bg-neutral-100" }) do |form| %>
+<%= form_with(model: [@shoe, @run], id: "#{dom_id(@run)}_form",  html: { class: "flex flex-col gap-1 items-center py-2 px-5 rounded bg-neutral-100 dark:bg-neutral-800" }) do |form| %>
   <div class="w-full grid sm:grid-cols-2 md:grid-cols-3 gap-x-2">
     <div class="flex flex-col">
       <div class="flex items-baseline gap-1">
@@ -9,7 +9,7 @@
       </div>
       <%= form.date_field :date, 
         max: Date.today, 
-        class: "rounded p-1 bg-neutral-50 border-mint w-full text-eggplant" %>
+        class: "rounded p-1 bg-neutral-50 border-mint w-full text-eggplant dark:bg-neutral-800 dark:text-neutral-50" %>
     </div>
 
     <div class="flex flex-col">
@@ -23,7 +23,7 @@
         step: :any, 
         min: 0, 
         value: ((current_user.unit == "mi" ? @run.distance : miles_to_km(@run.distance).round(2)) if @run.distance), 
-        class: "rounded p-1 bg-neutral-50 border-mint w-full text-eggplant" %>
+        class: "rounded p-1 bg-neutral-50 border-mint w-full text-eggplant dark:bg-neutral-800 dark:text-neutral-50" %>
     </div>
 
     <div class="flex flex-col">
@@ -31,7 +31,7 @@
       <%= form.select :distance_units, 
         ['mi', 'km'], 
         { selected: current_user.unit }, 
-        { class: "rounded p-1 bg-neutral-50 border-mint text-eggplant" } %>
+        { class: "rounded p-1 bg-neutral-50 border-mint text-eggplant dark:bg-neutral-800 dark:text-neutral-50" } %>
     </div>
 
     <div class="flex flex-col">
@@ -40,7 +40,7 @@
         value: @run.duration ? (@run.duration/3600).floor : 0, 
         min: 0, 
         max: 100, 
-        class: "rounded p-1 bg-neutral-50 border-mint w-full text-eggplant" %>
+        class: "rounded p-1 bg-neutral-50 border-mint w-full text-eggplant dark:bg-neutral-800 dark:text-neutral-50" %>
     </div>
 
     <div class="flex flex-col">
@@ -49,7 +49,7 @@
         value: @run.duration ? (@run.duration/60).floor % 60 : 0, 
         min: 0, 
         max: 59, 
-        class: "rounded p-1 bg-neutral-50 border-mint w-full text-eggplant" %>
+        class: "rounded p-1 bg-neutral-50 border-mint w-full text-eggplant dark:bg-neutral-800 dark:text-neutral-50" %>
     </div>
 
     <div class="flex flex-col">
@@ -58,7 +58,7 @@
         value: @run.duration ? (@run.duration % 60) : 0, 
         min: 0, 
         max: 59, 
-        class: "rounded p-1 bg-neutral-50 border-mint w-full text-eggplant" %>
+        class: "rounded p-1 bg-neutral-50 border-mint w-full text-eggplant dark:bg-neutral-800 dark:text-neutral-50" %>
     </div>
 
     <div class="flex flex-col">
@@ -66,7 +66,7 @@
       <%= form.select :felt, 
         options_for_select(Run.felts.map {|k, v| [k.humanize.capitalize, v]}, @run.felt_before_type_cast), 
         {}, 
-        { class: "rounded p-1 bg-neutral-50 border-mint text-eggplant" } %>
+        { class: "rounded p-1 bg-neutral-50 border-mint text-eggplant dark:bg-neutral-800 dark:text-neutral-50" } %>
     </div>
 
     <div class="flex flex-col">
@@ -74,7 +74,7 @@
       <%= form.text_area :notes, 
         cols: 20, 
         rows: 2, 
-        class: "rounded p-1 bg-neutral-50 border-mint w-full text-eggplant" %>
+        class: "rounded p-1 bg-neutral-50 border-mint w-full text-eggplant dark:bg-neutral-800 dark:text-neutral-50" %>
     </div>
   </div>
   <div class="w-5/6 md:w-1/2 flex justify-between">

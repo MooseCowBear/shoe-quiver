@@ -32,13 +32,13 @@ module RunsHelper
     return "" if run.new_record?
     case run.felt
     when "good"
-      "bg-mint text-neutral-50"
+      "bg-mint text-neutral-50 dark:bg-mint/90"
     when "okay"
-      "bg-mustard"
+      "bg-mustard dark:bg-mustard/90 dark:text-neutral-900"
     when "bad"
-      "bg-poppy text-neutral-50"
+      "bg-poppy text-neutral-50 dark:bg-poppy/90"
     else
-      "bg-neutral-200"
+      "bg-neutral-200 dark:bg-neutral-700"
     end
   end
 end

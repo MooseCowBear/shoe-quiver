@@ -11,18 +11,34 @@ module ShoesHelper
     end
   end
 
-  def shoe_wear_category(shoe)
+  # bg-#{shoe_wear_category(shoe)} #{shoe_wear_category(shoe) == "mustard" ? "text-eggplant" : "text-neutral-50"}
+
+  def shoe_card_classes(shoe)
     # for getting the right color for shoe card
     return "" if shoe.new_record?
     mileage_used = shoe.percent_retire_mileage
     if shoe.mileage < 1
-      "eggplant"
+      "bg-eggplant text-neutral-50 darK:bg-eggplant/90"
     elsif mileage_used < 50
-      "mint"
+      "bg-mint text-neutral-50 dark:bg-mint/90"
     elsif mileage_used < 90
-      "mustard"
+      "bg-mustard text-eggplant dark:bg-mustard/90 dark:text-neutral-900"
     else
-      "poppy"
+      "bg-poppy text-neutral-50 dark:bg-poppy/90"
+    end
+  end
+
+  def shoe_classes(shoe)
+    return "" if shoe.new_record?
+    mileage_used = shoe.percent_retire_mileage
+    if shoe.mileage < 1
+      "neutral-50"
+    elsif mileage_used < 50
+      "neutral-50"
+    elsif mileage_used < 90
+      "eggplant dark:fill-neutral-900 dark:border-neutral-900"
+    else
+      "neutral-50"
     end
   end
 

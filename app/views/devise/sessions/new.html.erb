@@ -1,26 +1,26 @@
 <div class="flex flex-col gap-3">
   <h2 class="uppercase tracking-wider font-semibold">Log in</h2>
 
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "flex flex-col gap-3 p-5 bg-neutral-50 rounded-md border-2 shadow-sm" }) do |f| %>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "flex flex-col gap-3 p-5 bg-neutral-50 rounded-md border-2 shadow-sm dark:bg-neutral-800 dark:border-neutral-700" }) do |f| %>
     <div class="field">
       <%= f.label :email, class: "lowercase" %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "rounded p-2 bg-neutral-50 border-eggplant w-full text-eggplant" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "rounded p-2 bg-neutral-50 border-eggplant w-full text-eggplant dark:bg-neutral-800 dark:text-neutral-50" %>
     </div>
 
     <div class="field">
       <%= f.label :password, class: "lowercase" %><br />
-      <%= f.password_field :password, autocomplete: "current-password", class: "rounded p-2 bg-neutral-50 border-eggplant w-full text-eggplant" %>
+      <%= f.password_field :password, autocomplete: "current-password", class: "rounded p-2 bg-neutral-50 border-eggplant w-full text-eggplant dark:bg-neutral-800 dark:text-neutral-50" %>
     </div>
 
     <% if devise_mapping.rememberable? %>
       <div class="field flex items-center gap-1">
-        <%= f.check_box :remember_me, class: "border-eggplant rounded-sm" %>
+        <%= f.check_box :remember_me, class: "border-eggplant rounded-sm dark:bg-neutral-700" %>
         <%= f.label :remember_me %>
       </div>
     <% end %>
 
     <div class="actions">
-      <%= f.submit "Log in", class: "cursor-pointer uppercase tracking-wider w-full bg-eggplant border-2 border-eggplant text-neutral-50 py-2 rounded hover:bg-neutral-50 hover:text-eggplant" %>
+      <%= f.submit "Log in", class: "cursor-pointer uppercase tracking-wider w-full bg-eggplant border-2 border-eggplant text-neutral-50 py-2 rounded hover:bg-neutral-50 hover:text-eggplant dark:bg-mint dark:border-mint dark:text-neutral-900 dark:hover:bg-neutral-800 dark:hover:text-neutral-50" %>
     </div>
   <% end %>
 
@@ -31,7 +31,7 @@
       <%= button_to "Sign in as Alice", 
         demo_sessions_path, 
         method: :post, 
-        class: "cursor-pointer uppercase tracking-wider w-full bg-eggplant border-2 border-eggplant text-neutral-50 py-2 rounded hover:bg-neutral-50 hover:text-eggplant" %>
+        class: "cursor-pointer uppercase tracking-wider w-full bg-eggplant border-2 border-eggplant text-neutral-50 py-2 rounded hover:bg-neutral-50 hover:text-eggplant dark:bg-mint dark:border-mint dark:text-neutral-900 dark:hover:bg-neutral-800 dark:hover:text-neutral-50" %>
 
   <div class="self-center text-center">
     <%= render "devise/shared/links" %>

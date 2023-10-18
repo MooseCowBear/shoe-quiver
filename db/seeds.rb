@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-alice = User.create(email: "alice@fake.com", password: "123456")
+alice = User.create(email: "alice@fake.com", password: (0...25).map { [*('a'..'z'), *('0'..'9') ].to_a[rand(36)] }.join)
 
 shoes = [
   { brand: "Saucony", model: "Ride 16", color: "blue" }, 
@@ -34,13 +34,18 @@ shoes.each do |s|
   recentish_dates.reject! {|elem| run_dates.include?(elem) } #so will get one run per date
 
   run_dates.each do |d|
-    dist = rand(2..26)
+    dist = rand(5..26)
     min_dur = dist*6*60
     max_dur = dist*10*60
     dur = rand(min_dur..max_dur)
     Run.create(shoe: shoe, user: alice, distance: dist, duration: dur, date: Date.today - d, felt: rand(0..3))
   end
 end
+
+# one with no runs
+shoe = Shoe.new({ brand: "Hoka", model: "Clifton 9", color: "navy" })
+shoe.user = alice
+shoe.save
 
 # 24, upto 40 runs per shoe <= 960
 max = 960 - recentish_dates.length + 120

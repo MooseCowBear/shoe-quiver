@@ -1,5 +1,5 @@
 <li id='<%="#{dom_id(run)}_container"%>' class="" data-sort-code='<%= run.date.to_time.to_i %>'>
-  <%= turbo_frame_tag dom_id(run), class:"grid grid-cols-[1fr,_auto] gap-x-2 p-5 rounded-md bg-neutral-100 border-2" do %>
+  <%= turbo_frame_tag dom_id(run), class:"grid grid-cols-[1fr,_auto] gap-x-2 p-5 rounded-md bg-neutral-100 border-2 dark:bg-neutral-800 dark:border-neutral-700" do %>
     <h3><%= run.date.strftime("%m/%-d/%y") %></h3>
     <% if run.felt == "good" %>
       <svg class="h-7 w-7 fill-eggplant justify-self-end" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -22,14 +22,14 @@
     <p><%= run.notes %></p>
     <div class="flex gap-2 items-center">
       <%= link_to edit_run_path(run) do %> 
-        <svg class="h-6 w-6 fill-eggplant" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <path fill="#1f2937" d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" />
+        <svg class="h-6 w-6 fill-eggplant dark:fill-mint" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path fill="" d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" />
         </svg>
       <% end %>
         | 
       <%= button_to run_path(run), method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } } do %>
-        <svg class="h-5 w-5 fill-eggplant translate-y-[3px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-          <path fill="#1f2937" d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/>
+        <svg class="h-5 w-5 fill-eggplant translate-y-[3px] dark:fill-mint" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+          <path fill="" d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/>
         </svg>
       <% end %> 
     </div>

@@ -1,29 +1,43 @@
 <div class="flex flex-col gap-3">
   <h2 class="uppercase tracking-wider font-semibold">Sign up</h2>
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "flex flex-col gap-3 p-5 bg-neutral-50 rounded-md border-2 shadow-sm" }) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "flex flex-col gap-3 p-5 bg-neutral-50 rounded-md border-2 shadow-sm dark:bg-neutral-800 dark:border-neutral-700" }) do |f| %>
 
     <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "rounded p-2 bg-neutral-50 border-eggplant w-full text-eggplant" %>
+      <div class="flex gap-2 flex-wrap">
+        <%= f.label :email, class: "lowercase" %>
+        <% f.object.errors.full_messages_for(:email).each do |msg| %>
+          <span class="text-pink-500"><%= msg %></span>
+        <% end %>
+      </div>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "rounded p-2 bg-neutral-50 border-eggplant w-full text-eggplant dark:bg-neutral-800 dark:text-neutral-50" %>
     </div>
 
     <div class="field">
-      <%= f.label :password %>
+      <div class="flex gap-2 flex-wrap">
+        <%= f.label :password, class: "lowercase" %> 
+        <% f.object.errors.full_messages_for(:password).each do |msg| %>
+          <span class="text-pink-500"><%= msg %></span>
+        <% end %>
+      </div>
       <% if @minimum_password_length %>
       <em>(<%= @minimum_password_length %> characters minimum)</em>
       <% end %><br />
-      <%= f.password_field :password, autocomplete: "new-password", class: "rounded p-2 bg-neutral-50 border-eggplant w-full text-eggplant" %>
+      <%= f.password_field :password, autocomplete: "new-password", class: "rounded p-2 bg-neutral-50 border-eggplant w-full text-eggplant dark:bg-neutral-800 dark:text-neutral-50" %>
     </div>
 
     <div class="field">
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "rounded p-2 bg-neutral-50 border-eggplant w-full text-eggplant" %>
+      <div class="flex gap-2 flex-wrap">
+        <%= f.label :password_confirmation, class: "lowercase" %>
+        <% f.object.errors.full_messages_for(:password_confirmation).each do |msg| %>
+          <span class="text-pink-500"><%= msg %></span>
+        <% end %>
+      </div>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "rounded p-2 bg-neutral-50 border-eggplant w-full text-eggplant dark:bg-neutral-800 dark:text-neutral-50" %>
     </div>
 
     <div class="actions">
-      <%= f.submit "Sign up", class: "cursor-pointer uppercase tracking-wider w-full bg-eggplant border-2 border-eggplant text-neutral-50 py-2 rounded hover:bg-neutral-50 hover:text-eggplant" %>
+      <%= f.submit "Sign up", class: "cursor-pointer uppercase tracking-wider w-full bg-eggplant border-2 border-eggplant text-neutral-50 py-2 rounded hover:bg-neutral-50 hover:text-eggplant dark:bg-mint dark:border-mint dark:text-neutral-900 dark:hover:bg-neutral-800 dark:hover:text-neutral-50" %>
     </div>
   <% end %>
 

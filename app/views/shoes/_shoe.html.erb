@@ -1,12 +1,12 @@
 <li id='<%="#{dom_id(shoe)}_container"%>' class="" data-sort-code='<%= sort_code(shoe) %>'>
   <%= turbo_frame_tag dom_id(shoe), 
-    class: "p-2 rounded-md grid grid-cols-1 md:grid-cols-[1fr_auto] items-center gap-x-2 bg-#{shoe_wear_category(shoe)} #{shoe_wear_category(shoe) == "mustard" ? "text-eggplant" : "text-neutral-50"}" do %>
+    class: "p-2 rounded-md grid grid-cols-1 md:grid-cols-[1fr_auto] items-center gap-x-2 #{shoe_card_classes(shoe)}" do %>
     <h3 class="flex items-center gap-2 uppercase row-start-1">
       <%= shoe.brand %>
       <span class="lowercase">
         <%= shoe.model %>
       </span>
-      <span class="text-sm rounded-xl px-2 border-2 <%= shoe_wear_category(shoe) == "mustard" ? "border-eggplant" : "border-neutral-50" %>">
+      <span class='text-sm rounded-xl px-2 border-2 <%= "border-#{shoe_classes(shoe)}" %>'>
         <%= category_identifier(shoe) %>
       </span>
     </h3>
@@ -14,7 +14,7 @@
       <p><%= distance_display(shoe.mileage, current_user.unit) %></p>
       <% unless show %>
         <%= link_to shoe_path(shoe), data: {turbo_frame: "_top"}, class: "h-7 w-7" do %> 
-          <svg class="<%= shoe_wear_category(shoe) == "mustard" ? "fill-eggplant" : "fill-neutral-50" %>" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <svg class='<%= "fill-#{shoe_classes(shoe)}" %>' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <path  fill="" d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z" />
           </svg>
         <% end %>
@@ -28,7 +28,7 @@
     <p class="leading-none row-start-2"><%= shoe.color %></p>
 
     <%= link_to new_shoe_run_path(shoe_id: shoe), { data: { turbo_frame: dom_id(Run.new) }, class: "flex items-center justify-self-end" } do %>
-      <svg class="h-6 w-6 <%= shoe_wear_category(shoe) == "mustard" ? "fill-eggplant" : "fill-neutral-50" %>" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <svg class='h-6 w-6 <%= "fill-#{shoe_classes(shoe)}" %>' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <path fill="" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
       </svg>
       <p>Add a run</p>

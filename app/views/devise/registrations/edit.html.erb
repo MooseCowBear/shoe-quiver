@@ -1,6 +1,6 @@
 <h2 class="uppercase tracking-wider font-semibold">Edit <%= resource_name.to_s.humanize %></h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "flex flex-col gap-3 p-5 bg-neutral-50 rounded-md border-2 shadow-sm" }) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "flex flex-col gap-3 p-5 bg-neutral-50 rounded-md border-2 shadow-sm dark:bg-neutral-800 dark:border-neutral-700" }) do |f| %>
   <div class="field">
     <div class="flex gap-2 flex-wrap">
       <%= f.label :email, class: "lowercase" %>
@@ -8,7 +8,7 @@
         <span class="text-pink-500"><%= msg %></span>
       <% end %>
     </div>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "rounded p-2 bg-neutral-50 border-eggplant w-full text-eggplant" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "rounded p-2 bg-neutral-50 border-eggplant w-full text-eggplant dark:bg-neutral-800 dark:text-neutral-50" %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -23,7 +23,7 @@
       <% end %>
     </div>
     <i>(leave blank if you don't want to change it)</i>
-    <%= f.password_field :password, autocomplete: "new-password", class: "rounded p-2 bg-neutral-50 border-eggplant w-full text-eggplant" %>
+    <%= f.password_field :password, autocomplete: "new-password", class: "rounded p-2 bg-neutral-50 border-eggplant w-full text-eggplant dark:bg-neutral-800 dark:text-neutral-50" %>
     <% if @minimum_password_length %>
       <em><%= @minimum_password_length %> characters minimum</em>
     <% end %>
@@ -36,7 +36,7 @@
         <span class="text-pink-500"><%= msg %></span>
       <% end %>
     </div>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "rounded p-2 bg-neutral-50 border-eggplant w-full text-eggplant" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "rounded p-2 bg-neutral-50 border-eggplant w-full text-eggplant dark:bg-neutral-800 dark:text-neutral-50" %>
   </div>
 
   <div class="field">
@@ -47,11 +47,11 @@
       <% end %>
     </div>
     <i>(we need your current password to confirm your changes)</i>
-    <%= f.password_field :current_password, autocomplete: "current-password", class: "rounded p-2 bg-neutral-50 border-eggplant w-full text-eggplant" %>
+    <%= f.password_field :current_password, autocomplete: "current-password", class: "rounded p-2 bg-neutral-50 border-eggplant w-full text-eggplant dark:bg-neutral-800 dark:text-neutral-50" %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Update", class: "cursor-pointer uppercase tracking-wider w-full bg-eggplant border-2 border-eggplant text-neutral-50 py-2 rounded hover:bg-neutral-50 hover:text-eggplant" %>
+    <%= f.submit "Update", class: "cursor-pointer uppercase tracking-wider w-full bg-eggplant border-2 border-eggplant text-neutral-50 py-2 rounded hover:bg-neutral-50 hover:text-eggplant dark:bg-mint dark:border-mint dark:text-neutral-900 dark:hover:bg-neutral-800 dark:hover:text-neutral-50" %>
   </div>
 <% end %>
 

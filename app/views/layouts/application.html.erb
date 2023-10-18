@@ -11,21 +11,21 @@
     <%= favicon_link_tag asset_path('favicon.ico') %>
   </head>
 
-  <body class="flex flex-col items-stretch gap-3 max-w-[1400px] min-w-[320px] mx-auto py-5 px-[clamp(1rem,_5vw,_3rem)] bg-neutral-50 text-eggplant relative">
+  <body class="flex flex-col items-stretch gap-3 max-w-[1400px] min-w-[320px] mx-auto py-5 px-[clamp(1rem,_5vw,_3rem)] bg-neutral-50 text-eggplant relative dark:bg-neutral-900 dark:text-mint">
     <header class="grid grid-cols-3 items-center">
 
       <% if user_signed_in? %>
         <div data-controller="toggle" data-toggle-change-class="hidden">
           <button data-action="click->toggle#remove" class="clickable">
-            <svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <svg class="h-8 w-8 fill-eggplant dark:fill-mint" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path fill="" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
             </svg>
           </button>
           <div data-toggle-target="content" 
-            class="hidden w-[clamp(280px,_60vw,_600px)] p-5 bg-neutral-50 rounded border-2 flex flex-col items-center justify-center absolute top-[4rem] left-[50%] translate-x-[-50%] shadow-md" 
+            class="hidden w-[clamp(280px,_60vw,_600px)] p-5 bg-neutral-50 rounded border-2 flex flex-col items-center justify-center absolute top-[4rem] left-[50%] translate-x-[-50%] shadow-md dark:bg-neutral-800 dark:border-neutral-700" 
             id="menu">
             <button data-action="click->toggle#add" class="self-end">
-              <svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <svg class="h-8 w-8 fill-eggplant dark:fill-mint" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <path fill="" d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
               </svg>
             </button>
@@ -36,7 +36,7 @@
 
       <%= link_to root_path, class: "flex items-center justify-self-center #{user_signed_in? ? '': 'col-span-full'}" do %>
         <h2 class="text-lg font-bold">Shoe Quiver</h2>
-        <svg class="h-8 w-8 fill-eggplant" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <svg class="h-8 w-8 fill-eggplant dark:fill-mint" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <path fill="" d="M19.03 6.03L20 7L22 2L17 4L17.97 4.97L16.15 6.79C10.87 2.16 3.3 3.94 2.97 4L2 4.26L2.5 6.2L3.29 6L10.12 12.82L6.94 16H5L2 19L4 20L5 22L8 19V17.06L11.18 13.88L18 20.71L17.81 21.5L19.74 22L20 21.03C20.06 20.7 21.84 13.13 17.21 7.85L19.03 6.03M4.5 5.78C6.55 5.5 11.28 5.28 14.73 8.21L10.82 12.12L4.5 5.78M18.22 19.5L11.88 13.18L15.79 9.27C18.72 12.72 18.5 17.45 18.22 19.5Z" />
         </svg>
       <% end %>
