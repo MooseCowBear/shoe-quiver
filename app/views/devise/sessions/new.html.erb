@@ -1,26 +1,39 @@
-<h2 class="uppercase tracking-wider font-semibold">Log in</h2>
+<div class="flex flex-col gap-3">
+  <h2 class="uppercase tracking-wider font-semibold">Log in</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "flex flex-col gap-2" }) do |f| %>
-  <div class="field">
-    <%= f.label :email, class: "lowercase" %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "rounded" %>
-  </div>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "flex flex-col gap-2" }) do |f| %>
+    <div class="field">
+      <%= f.label :email, class: "lowercase" %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "rounded" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password, class: "lowercase" %><br />
-    <%= f.password_field :password, autocomplete: "current-password", class: "rounded" %>
-  </div>
+    <div class="field">
+      <%= f.label :password, class: "lowercase" %><br />
+      <%= f.password_field :password, autocomplete: "current-password", class: "rounded" %>
+    </div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field flex items-center gap-1">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+    <% if devise_mapping.rememberable? %>
+      <div class="field flex items-center gap-1">
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %>
+      </div>
+    <% end %>
+
+    <div class="actions">
+      <%= f.submit "Log in", class: "cursor-pointer uppercase tracking-wider w-full bg-eggplant border-2 border-eggplant text-neutral-50 py-2 rounded hover:bg-neutral-50 hover:text-eggplant" %>
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit "Log in", class: "cursor-pointer uppercase tracking-wider w-full bg-eggplant border-2 border-eggplant text-neutral-50 py-2 rounded hover:bg-neutral-50 hover:text-eggplant" %>
-  </div>
-<% end %>
+  <div class="flex flex-col gap-3 px-5">
+      <h3 class="uppercase tracking-widest font-medium self-center">
+        Demo Account
+      </h3>
+      <%= button_to "Sign in as Alice", 
+        demo_sessions_path, 
+        method: :post, 
+        class: "cursor-pointer uppercase tracking-wider w-full bg-eggplant border-2 border-eggplant text-neutral-50 py-2 rounded hover:bg-neutral-50 hover:text-eggplant" %>
 
-<%= render "devise/shared/links" %>
+  <div class="self-center text-center">
+    <%= render "devise/shared/links" %>
+  </div>
+</div>

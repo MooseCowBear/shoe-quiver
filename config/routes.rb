@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :demo_sessions, only: [:create]
   devise_for :users
 
   resources :shoes
