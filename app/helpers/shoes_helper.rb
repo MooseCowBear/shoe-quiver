@@ -11,8 +11,6 @@ module ShoesHelper
     end
   end
 
-  # bg-#{shoe_wear_category(shoe)} #{shoe_wear_category(shoe) == "mustard" ? "text-eggplant" : "text-neutral-50"}
-
   def shoe_card_classes(shoe)
     # for getting the right color for shoe card
     return "" if shoe.new_record?
@@ -29,7 +27,8 @@ module ShoesHelper
   end
 
   def shoe_classes(shoe)
-    return "" if shoe.new_record?
+    #for borders and svg fills
+    return "mint" if shoe.new_record?
     mileage_used = shoe.percent_retire_mileage
     if shoe.mileage < 1
       "neutral-50"

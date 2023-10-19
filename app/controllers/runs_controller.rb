@@ -95,7 +95,7 @@ class RunsController < ApplicationController
   def set_referrer
     if request.referrer == root_url || request.referrer == shoes_url
       @referrer = "root"
-    elsif request.referrer == edit_run_url(@run)
+    elsif @run && request.referrer == edit_run_url(@run)
       @referrer = "edit"
     elsif request.referrer == runs_url
       @referrer = "runs"

@@ -1,4 +1,4 @@
-<%= form_with(model: @shoe, id: "#{dom_id(@shoe)}_form", html: { class: "flex flex-col gap-1 items-center p-5 rounded #{@shoe.new_record? ? 'border-2' : ''}" }) do |form| %>
+<%= form_with(model: @shoe, id: "#{dom_id(@shoe)}_form", html: { class: "flex flex-col gap-1 items-center p-5 rounded #{@shoe.new_record? ? 'border-2' : ''} dark:border-neutral-700" }) do |form| %>
   <div class="w-full grid sm:grid-cols-2 md:grid-cols-3 gap-x-2">
     <div class="flex flex-col">
       <div class="flex items-baseline gap-1">
@@ -8,7 +8,7 @@
         <% end %>
       </div>
       <%= form.text_field :brand, 
-        class: "rounded p-1 bg-neutral-50 border-mint w-full text-eggplant" %>
+        class: "rounded p-1 bg-neutral-50 border-mint w-full text-eggplant #{@shoe.new_record? ? 'dark:bg-neutral-800 dark:text-neutral-50' : ''}" %>
     </div>
     <div class="flex flex-col">
       <div class="flex items-baseline gap-1">
@@ -18,19 +18,19 @@
         <% end %>
       </div>
       <%= form.text_field :model, 
-        class: "rounded p-1 bg-neutral-50 border-mint w-full text-eggplant" %>
+        class: "rounded p-1 bg-neutral-50 border-mint w-full text-eggplant #{@shoe.new_record? ? 'dark:bg-neutral-800 dark:text-neutral-50' : ''}" %>
     </div>
     <div class="flex flex-col">
       <%= form.label :color, "Color:", class: "lowercase text-sm" %>
       <%= form.text_field :color, 
-        class: "rounded p-1 bg-neutral-50 border-mint text-eggplant" %>
+        class: "rounded p-1 bg-neutral-50 border-mint text-eggplant #{@shoe.new_record? ? 'dark:bg-neutral-800 dark:text-neutral-50' : ''}" %>
     </div>
     <div class="flex flex-col">
       <%= form.label :category, "Category:", class: "lowercase text-sm" %>
       <%= form.select :category, 
         options_for_select(Shoe.categories.map {|k, v| [k.humanize, v]}), 
         {}, 
-        { class: "rounded p-1 bg-neutral-50 border-mint text-eggplant" } %>
+        { class: "rounded p-1 bg-neutral-50 border-mint text-eggplant #{@shoe.new_record? ? 'dark:bg-neutral-800 dark:text-neutral-50' : ''}" } %>
     </div>
     <div class="flex flex-col">
       <%= form.label :retire_at, "Retire at:", class: "lowercase text-sm" %>
@@ -41,18 +41,18 @@
         min: 100, 
         max: 600, 
         step: 50, 
-        class: "rounded p-1 bg-neutral-50 border-mint text-eggplant" %>
+        class: "rounded p-1 bg-neutral-50 border-mint text-eggplant #{@shoe.new_record? ? 'dark:bg-neutral-800 dark:text-neutral-50' : ''}" %>
     </div>
     <div class="flex flex-col">
       <%= form.label :retire_at_units, "Units:", class: "lowercase text-sm" %>
       <%= form.select :retire_at_units, 
         ['mi', 'km'], 
         { selected: current_user.unit }, 
-        { class: "rounded p-1 bg-neutral-50 border-mint text-eggplant" } %>
+        { class: "rounded p-1 bg-neutral-50 border-mint text-eggplant #{@shoe.new_record? ? 'dark:bg-neutral-800 dark:text-neutral-50' : ''}" } %>
     </div>
   </div>
   <div class="w-5/6 md:w-1/2 flex justify-between mt-3">
-    <%= form.submit class: "text-sm uppercase tracking-wider cursor-pointer border-b-2 border-transparent hover:border-#{shoe_classes(@shoe)}" %>
-    <%= link_to "Cancel", :back, class: "text-sm uppercase tracking-wider cursor-pointer py-1 px-3 border-b-2 border-transparent hover:border-#{shoe_classes(@shoe)}" %>
+    <%= form.submit class: "text-sm uppercase tracking-wider cursor-pointer border-b-2 border-transparent hover:border-#{shoe_classes(@shoe)} #{@shoe.new_record? ? 'hover:border-mint' : ''}" %>
+    <%= link_to "Cancel", :back, class: "text-sm uppercase tracking-wider cursor-pointer py-1 px-3 border-b-2 border-transparent hover:border-#{shoe_classes(@shoe)} #{@shoe.new_record? ? 'hover:border-mint' : ''}" %>
   </div>
 <% end %>
