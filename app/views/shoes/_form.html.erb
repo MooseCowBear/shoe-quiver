@@ -1,4 +1,4 @@
-<%= form_with(model: @shoe, id: "#{dom_id(@shoe)}_form", html: { class: "flex flex-col gap-1 items-center p-5 rounded #{@shoe.new_record? ? 'border-2' : ''} dark:border-neutral-700" }) do |form| %>
+<%= form_with(model: @shoe, id: "#{dom_id(@shoe)}_form", html: { class: "flex flex-col gap-1 items-center p-5 rounded #{@shoe.new_record? ? 'border-2' : ''} dark:border-neutral-700 #{shoe_card_classes(@shoe)}" }) do |form| %>
   <div class="w-full grid sm:grid-cols-2 md:grid-cols-3 gap-x-2">
     <div class="flex flex-col">
       <div class="flex items-baseline gap-1">
@@ -52,7 +52,11 @@
     </div>
   </div>
   <div class="w-5/6 md:w-1/2 flex justify-between mt-3">
-    <%= form.submit class: "text-sm uppercase tracking-wider cursor-pointer border-b-2 border-transparent hover:#{border_classes(@shoe)}" %>
-    <%= link_to "Cancel", :back, class: "text-sm uppercase tracking-wider cursor-pointer py-1 px-3 border-b-2 border-transparent hover:#{border_classes(@shoe)}" %>
+    <%= form.submit class: "text-sm uppercase tracking-wider cursor-pointer border-b-2 border-transparent #{hover_classes(@shoe)}", data: { turbo: (request.referrer == root_url || request.referrer == shoes_url || request.referrer == shoe_url(@shoe)) ? true : false } %>
+    <% if request.referrer == root_url || request.referrer == shoes_url || request.referrer == shoe_url(@shoe) %>
+      <%= link_to "Cancel", :back, class: "text-sm uppercase tracking-wider cursor-pointer py-1 px-3 border-b-2 border-transparent #{hover_classes(@shoe)}" %>
+    <% else %>
+      <%= link_to "Cancel", :back, class: "text-sm uppercase tracking-wider cursor-pointer py-1 px-3 border-b-2 border-transparent #{hover_classes(@shoe)}", data: { turbo_frame: "_top" } %>
+    <% end %>
   </div>
-<% end %>
+<% end %> 

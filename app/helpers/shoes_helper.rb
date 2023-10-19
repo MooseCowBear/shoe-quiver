@@ -26,21 +26,6 @@ module ShoesHelper
     end
   end
 
-  def shoe_classes(shoe)
-    #for borders and svg fills
-    return "mint" if shoe.new_record?
-    mileage_used = shoe.percent_retire_mileage
-    if shoe.mileage < 1
-      "neutral-50"
-    elsif mileage_used < 50
-      "neutral-50"
-    elsif mileage_used < 90
-      "eggplant dark:fill-neutral-900 dark:border-neutral-900"
-    else
-      "neutral-50"
-    end
-  end
-
   def border_classes(shoe)
     return "border-mint" if shoe.new_record?
     mileage_used = shoe.percent_retire_mileage
@@ -66,6 +51,20 @@ module ShoesHelper
       "fill-eggplant dark:fill-neutral-900"
     else
       "fill-neutral-50"
+    end
+  end
+
+  def hover_classes(shoe)
+    return "hover:border-mint" if shoe.new_record?
+    mileage_used = shoe.percent_retire_mileage
+    if shoe.mileage < 1
+      "hover:border-neutral-50"
+    elsif mileage_used < 50
+      "hover:border-neutral-50"
+    elsif mileage_used < 90
+      "hover:border-eggplant hover:dark:border-neutral-900"
+    else
+      "hover:border-neutral-50"
     end
   end
 
