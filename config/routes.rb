@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :demo_sessions, only: [:create]
-  devise_for :users
+  # devise_for :users
+  devise_for :users, controllers: { registrations: 'users/registrations' }
 
   resources :shoes
   resources :runs, only: [:index, :destroy, :edit, :update]
