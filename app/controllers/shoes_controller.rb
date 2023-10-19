@@ -37,6 +37,7 @@ class ShoesController < ApplicationController
   def edit
   end
 
+  # keep?
   def destroy
     @shoe.destroy
 
