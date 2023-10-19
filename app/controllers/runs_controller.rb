@@ -6,14 +6,11 @@ class RunsController < ApplicationController
     confirm_ownership(@run, "Only the owner of a run may view or modify it.")
   end
 
-  before_action :set_referrer, only: [:new, :edit, :destroy, :create, :update]
+  # before_action :set_referrer, only: [:new, :edit, :destroy, :create, :update]
 
   def index
     start_date = params.fetch(:start_date, Date.today).to_date
     @runs = Run.where(date: start_date.beginning_of_month.beginning_of_week..start_date.end_of_month.end_of_week)
-  end
-
-  def show
   end
 
   def new
@@ -44,7 +41,7 @@ class RunsController < ApplicationController
         .except(:hours, :minutes, :seconds, :distance_units)
     )
       respond_to do |format|
-        if @referrer == "edit"
+        if request.referrer == edit_run_url(@run)
           format.html { redirect_to runs_path, notice: "Run was successfully updated." } 
         else
           format.html { redirect_to @run.shoe, notice: "Run successfully updated." }
@@ -57,7 +54,6 @@ class RunsController < ApplicationController
   end
 
   def destroy
-    # TODO: update for deletion from run#show
     @run.destroy
     respond_to do |format|
       format.html { redirect_to @run.shoe, notice: "Run was successfully deleted." }
@@ -92,15 +88,15 @@ class RunsController < ApplicationController
       .merge(duration: duration_in_seconds, felt: run_params[:felt].to_i)
   end
 
-  def set_referrer
-    if request.referrer == root_url || request.referrer == shoes_url
-      @referrer = "root"
-    elsif @run && request.referrer == edit_run_url(@run)
-      @referrer = "edit"
-    elsif request.referrer == runs_url
-      @referrer = "runs"
-    else
-      @referrer = "shoe"
-    end
-  end
+  # def set_referrer
+  #   if request.referrer == root_url || request.referrer == shoes_url
+  #     @referrer = "root"
+  #   elsif @run && request.referrer == edit_run_url(@run)
+  #     @referrer = "edit"
+  #   elsif request.referrer == runs_url
+  #     @referrer = "runs"
+  #   else
+  #     @referrer = "shoe"
+  #   end
+  # end
 end

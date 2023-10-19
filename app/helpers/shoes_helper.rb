@@ -41,6 +41,34 @@ module ShoesHelper
     end
   end
 
+  def border_classes(shoe)
+    return "border-mint" if shoe.new_record?
+    mileage_used = shoe.percent_retire_mileage
+    if shoe.mileage < 1
+      "border-neutral-50"
+    elsif mileage_used < 50
+      "border-neutral-50"
+    elsif mileage_used < 90
+      "border-eggplant dark:border-neutral-900"
+    else
+      "border-neutral-50"
+    end
+  end
+
+  def svg_classes(shoe)
+    return "" if shoe.new_record?
+    mileage_used = shoe.percent_retire_mileage
+    if shoe.mileage < 1
+      "fill-neutral-50"
+    elsif mileage_used < 50
+      "fill-neutral-50"
+    elsif mileage_used < 90
+      "fill-eggplant dark:fill-neutral-900"
+    else
+      "fill-neutral-50"
+    end
+  end
+
   # for the stimulus sort controller
   # want shoes to be sorted first by last_run_in date asc with nulls first
   # among the nulls, want to be sorted by created_at desc

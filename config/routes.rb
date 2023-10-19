@@ -3,10 +3,10 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :shoes
-  resources :runs, only: [:index, :show, :destroy, :edit, :update]
+  resources :runs, only: [:index, :destroy, :edit, :update]
 
   resources :shoes do
-    resources :runs, only: [:new, :create, :edit, :update]
+    resources :runs, only: [:new, :create]
   end
 
   resources :archive, only: [:index, :update, :destroy]

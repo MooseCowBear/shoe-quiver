@@ -1,14 +1,14 @@
-<% if @referrer == "shoe" %>
+<% if request.referrer == root_url || request.referrer == shoes_url %>
+  <%= turbo_stream.replace "#{dom_id(@shoe)}_container", 
+    partial: "shoes/shoe", 
+    locals: { shoe: @shoe, show: false } %>
+  <%= turbo_stream.remove "new_run_form" %>
+<% else %>
   <%= turbo_stream.replace dom_id(@shoe) do %>
     <%= render partial: "shoes/shoe", locals: { shoe: @shoe, show: true } %>
     <%= turbo_stream.remove "new_run_form" %>
   <% end %>
   <%= turbo_stream.prepend "runs", partial: "runs/run", locals: { run: @run } %>
-<% elsif @referrer == "root" %>
-  <%= turbo_stream.replace "#{dom_id(@shoe)}_container", 
-    partial: "shoes/shoe", 
-    locals: { shoe: @shoe, show: false } %>
-  <%= turbo_stream.remove "new_run_form" %>
 <% end %>
 
 <%= turbo_stream.update "flash", partial: "layouts/flash" %>
