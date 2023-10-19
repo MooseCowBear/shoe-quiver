@@ -1,11 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe "DemoSessions", type: :request do
-  describe "GET /create" do
-    it "returns http success" do
-      get "/demo_sessions/create"
-      expect(response).to have_http_status(:success)
-    end
+  before (:each) do
+    @user = create(:user, email: "alice@fake.com")
   end
 
+  describe "POST /create" do
+    it "returns http success" do
+      post demo_sessions_path
+      expect(response).to redirect_to(root_path)
+    end
+  end
 end

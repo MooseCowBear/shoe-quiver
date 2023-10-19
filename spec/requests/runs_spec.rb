@@ -15,14 +15,6 @@ RSpec.describe "Runs", type: :request do
     end
   end
 
-  # is this going to stay?
-  describe "GET /show" do
-    it "returns http success" do
-      get run_path(@run) 
-      expect(response).to have_http_status(:success)
-    end
-  end
-
   describe "GET /new" do
     it "returns http success" do
       get new_shoe_run_path(@shoe) 

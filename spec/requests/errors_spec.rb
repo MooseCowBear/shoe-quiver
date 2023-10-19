@@ -1,18 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe "Errors", type: :request do
-  describe "GET /not_found" do
-    it "returns http success" do
-      get "/errors/not_found"
-      expect(response).to have_http_status(:success)
-    end
+  it 'responds with 404 error page' do
+    get '/404'
+    expect(response.body).to match(/page you're looking for could not be found/i)
   end
 
-  describe "GET /internal_server_error" do
-    it "returns http success" do
-      get "/errors/internal_server_error"
-      expect(response).to have_http_status(:success)
-    end
+  it 'responds with 500 error page' do
+    get '/500'
+    expect(response.body).to match(/something went wrong/i)
   end
-
 end
