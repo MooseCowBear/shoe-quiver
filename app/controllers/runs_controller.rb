@@ -50,9 +50,15 @@ class RunsController < ApplicationController
 
   def destroy
     @run.destroy
-    respond_to do |format|
-      format.html { redirect_to @run.shoe, notice: "Run was successfully deleted." }
-      format.turbo_stream { flash[:now] = "Run was successfully deleted." }
+    
+    if @run.shoe_id.nil? || params[:back] == runs_url
+      flash[:notice] = "Run was successfully deleted."
+      redirect_to runs_path
+    else
+      respond_to do |format|
+        format.html { redirect_to @run.shoe, notice: "Run was successfully deleted." } 
+        format.turbo_stream { flash[:now] = "Run was successfully deleted." }
+      end
     end
   end
 

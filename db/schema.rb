@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_13_184431) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_20_121323) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "runs", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "shoe_id", null: false
+    t.bigint "shoe_id"
     t.decimal "distance"
     t.integer "duration"
     t.integer "felt", default: 0

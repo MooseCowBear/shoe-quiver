@@ -37,12 +37,18 @@ class ShoesController < ApplicationController
   def edit
   end
 
-  # keep?
   def destroy
     @shoe.destroy
 
-    flash[:notice] = "Shoe was successfully deleted."
-    redirect_to shoes_path
+    if request.referrer == shoe_url(@shoe)
+      flash[:notice] = "Shoe was successfully deleted."
+      redirect_to root_path
+    else
+      respond_to do |format|
+        format.html { redirect_to root_path, notice: "Shoe was successfully deleted." }
+        format.turbo_stream { flash[:now] = "Shoe was successfully deleted." }
+      end
+    end
   end
 
   def index

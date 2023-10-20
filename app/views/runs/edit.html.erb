@@ -4,4 +4,11 @@
   <%= turbo_frame_tag @run do %>
     <%= render "form" %>
   <% end %>
+
+  <%= button_to "Delete", 
+    run_path(@run), 
+    data: { turbo_confirm: 'Are you sure?' }, 
+    class: "uppercase text-sm tracking-wider float-right text-pink-500", 
+    method: :delete,
+    params: { back: request.referrer } %>
 </div>

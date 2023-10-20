@@ -1,6 +1,6 @@
 class Run < ApplicationRecord
   belongs_to :user
-  belongs_to :shoe
+  belongs_to :shoe, optional: true
 
   enum :felt, { unspecified: 0, good: 1, okay: 2, bad: 3 }
 
@@ -44,18 +44,21 @@ class Run < ApplicationRecord
 
   #after create 
   def add_shoe_mileage 
+    return unless shoe
     old_mileage = shoe.mileage
     shoe.update(mileage: old_mileage + distance)
   end
 
   #after destroy 
   def subtract_shoe_mileage
+    return unless shoe
     old_mileage = shoe.mileage
     shoe.update(mileage: old_mileage - distance)
   end
 
   #before update
   def update_shoe_milage
+    return unless shoe
     if distance_was != distance
       old_mileage = shoe.mileage
       new_mileage = old_mileage - distance_was + distance
@@ -65,6 +68,7 @@ class Run < ApplicationRecord
 
   def update_shoe_last_run
     # after change to shoe runs, need to update date 
+    return unless shoe
     last_run = shoe.runs.order_by_date.last
     prev_date = last_run ? last_run.date : nil
     shoe.update(last_run_in: prev_date)
