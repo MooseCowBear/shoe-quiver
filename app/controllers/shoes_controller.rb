@@ -10,7 +10,7 @@ class ShoesController < ApplicationController
   end
 
   def create
-    @shoe = Shoe.new(processed_shoe_params.except(:retire_at_units))
+    @shoe = Shoe.new(Shoe.process_params(shoe_params))
     @shoe.user = current_user
 
     if @shoe.save
@@ -24,7 +24,7 @@ class ShoesController < ApplicationController
   end
 
   def update
-    if @shoe.update(processed_shoe_params.except(:retire_at_units))
+    if @shoe.update(Shoe.process_params(shoe_params))
       respond_to do |format|
         format.html { redirect_to @shoe, notice: "Shoe successfully updated." }
         format.turbo_stream { flash.now[:notice] = "Shoe successfully updated." } 
@@ -67,15 +67,6 @@ class ShoesController < ApplicationController
   def shoe_params
     params.require(:shoe)
       .permit(:brand, :model, :color, :category, :retire_at, :retire_at_units)
-  end
-
-  def processed_shoe_params
-    processed_params = shoe_params.deep_dup
-    if (shoe_params[:retire_at_units] == "km")
-      retire_at_mileage = km_to_miles(shoe_params[:retire_at]).round
-      processed_params = processed_params.merge(retire_at: retire_at_mileage)
-    end
-    processed_params = processed_params.merge(category: shoe_params[:category].to_i)
   end
 
   def set_shoe 

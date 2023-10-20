@@ -17,10 +17,13 @@ class Shoe < ApplicationRecord
   scope :order_by_creation, -> { order(created_at: :desc) }
   scope :order_by_retirement, -> { order(retired_on: :desc) }
 
-  # not right... ideally, want rate of mileage accumulation up to retirement if retired
-  # else up to now. but even this might bias a shoe you ran one long run in today...
-  def self.top_by_mileage_accumulation
-    order(Arel.sql('mileage / (now() - created_at) desc')).limit(3) 
+  def self.process_params(input_params)
+    processed_params = input_params.deep_dup
+    if (input_params[:retire_at_units] == "km")
+      processed_params.merge!(retire_at: km_to_miles(input_params[:retire_at]).round)
+    end
+    processed_params.merge!(category: input_params[:category].to_i)
+    processed_params.except(:retire_at_units)
   end
 
   def self.average_retirement_mileage

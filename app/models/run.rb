@@ -30,6 +30,16 @@ class Run < ApplicationRecord
     average(:duration)
   end
 
+  def self.process_params(input_params)
+    processed_params = input_params.deep_dup
+    if (input_params[:distance_units] == "km")
+      processed_params.merge!(distance: km_to_miles(input_params[:distance].to_i))
+    end
+    duration_in_seconds = processed_params[:hours].to_i * 60 * 60 + processed_params[:minutes].to_i * 60 + processed_params[:seconds].to_i
+    processed_params.merge!(duration: duration_in_seconds, felt: input_params[:felt].to_i)
+    processed_params.except(:hours, :minutes, :seconds, :distance_units)
+  end
+
   private 
 
   #after create 
