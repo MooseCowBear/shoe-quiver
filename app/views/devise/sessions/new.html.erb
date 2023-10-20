@@ -25,13 +25,14 @@
   <% end %>
 
   <div class="flex flex-col gap-3 px-5">
-      <h3 class="uppercase tracking-widest font-medium self-center">
-        Demo Account
-      </h3>
-      <%= button_to "Sign in as Alice", 
-        demo_sessions_path, 
-        method: :post, 
-        class: "cursor-pointer uppercase tracking-wider w-full bg-eggplant border-2 border-eggplant text-neutral-50 py-2 rounded hover:bg-neutral-50 hover:text-eggplant dark:bg-mint dark:border-mint dark:text-neutral-900 dark:hover:bg-neutral-800 dark:hover:text-neutral-50" %>
+    <h3 class="uppercase tracking-widest font-medium self-center">
+      Demo Account
+    </h3>
+    <%= button_to "Sign in as Alice", 
+      demo_sessions_path, 
+      method: :post, 
+      class: "cursor-pointer uppercase tracking-wider w-full bg-eggplant border-2 border-eggplant text-neutral-50 py-2 rounded hover:bg-neutral-50 hover:text-eggplant dark:bg-mint dark:border-mint dark:text-neutral-900 dark:hover:bg-neutral-800 dark:hover:text-neutral-50" %>
+  </div>
 
   <div class="self-center text-center">
     <%= render "devise/shared/links" %>
