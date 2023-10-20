@@ -7,6 +7,8 @@ class DemoSessionsController < ApplicationController
     redirect_to root_path
   end
 
+  private
+
   def set_user
     @user = User.find_by(email: "alice@fake.com")
   end
