@@ -1,2 +1,5 @@
 <%= turbo_stream.remove "#{dom_id(@run)}_container" %>
+<%= turbo_stream.replace "#{dom_id(@run.shoe)}_container" do %>
+  <%= render partial: "shoes/shoe", locals: { shoe: @run.shoe, show: true } %>
+<% end %>
 <%= turbo_stream.update "flash", partial: "layouts/flash" %>
