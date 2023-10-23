@@ -82,7 +82,7 @@
     <% if request.referrer == runs_url || request.referrer == nil %>
       <%= link_to "Cancel", :back, class: "text-sm uppercase tracking-wider cursor-pointer py-1 px-3 border-b-2 border-transparent hover:border-eggplant", data: { turbo_frame: "_top" } %>
     <% else %>
-      <%= link_to "Cancel", root_path, class: "text-sm uppercase tracking-wider cursor-pointer py-1 px-3 border-b-2 border-transparent hover:border-eggplant", data: { } %>
+      <%= link_to "Cancel", root_path, class: "text-sm uppercase tracking-wider cursor-pointer py-1 px-3 border-b-2 border-transparent hover:border-eggplant" %>
     <% end %>
   </div>
 <% end %>
