@@ -1,4 +1,8 @@
+require 'conversion'
+
 class Run < ApplicationRecord
+  extend Conversion
+
   belongs_to :user
   belongs_to :shoe, optional: true
 

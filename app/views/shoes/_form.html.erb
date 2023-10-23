@@ -39,8 +39,7 @@
           current_user.unit == "mi" ? @shoe.retire_at : miles_to_km(@shoe.retire_at) : 
           current_user.unit == "mi" ? 500 : miles_to_km(500).round, 
         min: 100, 
-        max: 600, 
-        step: 50, 
+        step: :any,
         class: "rounded p-1 bg-neutral-50 border-mint text-eggplant #{@shoe.new_record? ? 'dark:bg-neutral-800 dark:text-neutral-50' : ''}" %>
     </div>
     <div class="flex flex-col">
