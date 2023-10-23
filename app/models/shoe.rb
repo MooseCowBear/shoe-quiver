@@ -24,7 +24,7 @@ class Shoe < ApplicationRecord
   def self.process_params(input_params)
     processed_params = input_params.deep_dup
     if (input_params[:retire_at_units] == "km")
-      processed_params.merge!(retire_at: km_to_miles(input_params[:retire_at].to_i).round)
+      processed_params.merge!(retire_at: km_to_miles(input_params[:retire_at].to_f).round)
     end
     processed_params.merge!(category: input_params[:category].to_i)
     processed_params.except(:retire_at_units)
