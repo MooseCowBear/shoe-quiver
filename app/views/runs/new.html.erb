@@ -1,7 +1,7 @@
 <div>
   <h1 class="text-3xl font-semibold uppercase tracking-wider">New Run</h1>
 
-  <%= turbo_frame_tag @run do %>
+  <%= turbo_frame_tag "#{dom_id(@shoe)}_#{dom_id(@run)}" do %>
     <%= render "form" %>
   <% end %>
 </div>

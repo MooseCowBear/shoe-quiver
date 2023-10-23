@@ -27,7 +27,7 @@
     </div>
     <p class="leading-none row-start-2"><%= shoe.color %></p>
 
-    <%= link_to new_shoe_run_path(shoe_id: shoe), { data: { turbo_frame: dom_id(Run.new) }, class: "flex items-center justify-self-end" } do %>
+    <%= link_to new_shoe_run_path(shoe_id: shoe), { data: { turbo_frame: "#{dom_id(shoe)}_#{dom_id(Run.new)}" }, class: "flex items-center justify-self-end" } do %>
       <svg class='h-6 w-6 <%= svg_classes(shoe) %>' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <path fill="" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
       </svg>
@@ -36,5 +36,5 @@
     
   <% end %>
 
-  <%= turbo_frame_tag Run.new, class: "" %>
+  <%= turbo_frame_tag "#{dom_id(shoe)}_#{dom_id(Run.new)}", class: "" %>
 </li>
