@@ -40,7 +40,7 @@ class RunsController < ApplicationController
           format.html { redirect_to runs_path, notice: "Run was successfully updated." } 
         else
           format.html { redirect_to @run.shoe, notice: "Run successfully updated." }
-          format.turbo_stream { flash[:now] = "Run was successfully updated." }
+          format.turbo_stream { flash.now[:notice] = "Run was successfully updated." }
         end
       end
     else
@@ -57,7 +57,7 @@ class RunsController < ApplicationController
     else
       respond_to do |format|
         format.html { redirect_to @run.shoe, notice: "Run was successfully deleted." } 
-        format.turbo_stream { flash[:now] = "Run was successfully deleted." }
+        format.turbo_stream { flash.now[:notice] = "Run was successfully deleted." }
       end
     end
   end

@@ -46,7 +46,7 @@ class ShoesController < ApplicationController
     else
       respond_to do |format|
         format.html { redirect_to root_path, notice: "Shoe was successfully deleted." }
-        format.turbo_stream { flash[:now] = "Shoe was successfully deleted." }
+        format.turbo_stream { flash.now[:notice] = "Shoe was successfully deleted." }
       end
     end
   end
