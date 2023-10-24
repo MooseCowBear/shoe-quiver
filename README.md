@@ -2,6 +2,8 @@
 
 A full-stack Rails app for runners to keep track of their shoe mileage. 
 
+Hosted on [fly.io](https://shoe-quiver.fly.dev/)
+
 ## Features
 
 - Stimulus controller to keep current shoes in reverse chronolocial order of their last run so as to encourage rotation
