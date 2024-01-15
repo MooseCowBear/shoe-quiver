@@ -6,10 +6,7 @@ export default class extends Controller {
   }
 
   observeMutations(callback) {
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach(function (mutation) {
-        console.log(mutation.type);
-      });
+    const observer = new MutationObserver(() => {
       callback(this.element);
     });
     const config = { attributes: true, childList: true, subtree: true };
@@ -38,22 +35,6 @@ function compareElements(left, right) {
   return getSortCode(right) - getSortCode(left);
 }
 
-/* 
-function compareElements(left, right) {
-  let functionName = this.element.getAttribute("data-method");
-  const functionMap = {
-    "compareRuns": (left, right) => {
-      return getSortCode(right) - getSortCode(left);
-    },
-    "compareShoes": (left, right) => {
-
-    }
-  }
-  return functionMap[functionName](left, right);
-}
-*/
-
 function getSortCode(element) {
-  // shouldn't ever need the 0 here..
   return element.getAttribute("data-sort-code") || 0;
 }

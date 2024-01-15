@@ -13,7 +13,7 @@ class Run < ApplicationRecord
   before_create :add_shoe_mileage
   before_destroy :subtract_shoe_mileage
   before_update :update_shoe_milage
-  before_commit :update_shoe_last_run
+  after_commit :update_shoe_last_run
 
   scope :order_by_date, -> { order(date: :asc) }
   scope :reverse_order_by_date, -> { order(date: :desc) } #most recent runs first
@@ -46,21 +46,20 @@ class Run < ApplicationRecord
 
   private 
 
-  #after create 
+  # need to update a shoe whenever a run is created, updated, destroyed
+
   def add_shoe_mileage 
     return unless shoe
     old_mileage = shoe.mileage
     shoe.update(mileage: old_mileage + distance)
   end
 
-  #after destroy 
   def subtract_shoe_mileage
     return unless shoe
     old_mileage = shoe.mileage
     shoe.update(mileage: old_mileage - distance)
   end
 
-  #before update
   def update_shoe_milage
     return unless shoe
     if distance_was != distance
@@ -71,7 +70,6 @@ class Run < ApplicationRecord
   end
 
   def update_shoe_last_run
-    # after change to shoe runs, need to update date 
     return unless shoe
     last_run = shoe.runs.order_by_date.last
     prev_date = last_run ? last_run.date : nil

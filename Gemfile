@@ -75,3 +75,9 @@ gem "tailwindcss-rails", "~> 2.0"
 gem "pagy", "~> 6.1"
 
 gem "simple_calendar", "~> 3.0"
+
+gem "dockerfile-rails", ">= 1.5", :group => :development
+
+gem "sentry-ruby", "~> 5.12"
+
+gem "sentry-rails", "~> 5.12"

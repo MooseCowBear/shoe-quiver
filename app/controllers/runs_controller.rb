@@ -22,7 +22,7 @@ class RunsController < ApplicationController
 
     if @run.save
       respond_to do |format|
-        format.html { redirect_to @shoe, notice: "Run was successfully created." }
+        format.html { redirect_to @run.shoe, notice: "Run was successfully created." }
         format.turbo_stream { flash.now[:notice] = "Run was successfully created." } 
       end
     else
