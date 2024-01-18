@@ -31,6 +31,8 @@ function elementsAreSorted([left, ...rights]) {
   return true;
 }
 
+// sort codes should be descending 
+// if right - left > 0, then left was smaller than right
 function compareElements(left, right) {
   return getSortCode(right) - getSortCode(left);
 }
