@@ -110,7 +110,7 @@ RSpec.describe 'Shoes', type: :system, js: true do
     it 'redirects after a shoe is retired' do
       click_on "Retire"
 
-      expect has_current_path?(archive_index_path)
+      expect have_current_path(archive_index_path)
     end
 
     it 'destroys shoe' do
@@ -118,7 +118,7 @@ RSpec.describe 'Shoes', type: :system, js: true do
         click_on "Delete"
       end
       
-      expect has_current_path?(root_path)
+      expect(page).to have_current_path(root_path)
       expect(page).not_to have_content("test shoe")
     end
   end
