@@ -72,6 +72,7 @@ end
 group :test do
   gem "capybara", "~>3.39"
   gem "cuprite"
+  gem "orderly", "~> 0.1"
 end
 
 gem "devise"
